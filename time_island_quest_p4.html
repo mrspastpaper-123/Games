@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>時光星島大冒險｜P4人文及科學RPG</title>
+<style>
+:root{--bg:#f7f3ff;--card:#fff;--ink:#273043;--muted:#6b7280;--p1:#8b5cf6;--p2:#06b6d4;--p3:#f59e0b;--good:#10b981;--bad:#ef4444;--soft:#ede9fe}
+*{box-sizing:border-box}body{margin:0;font-family:"Noto Sans TC","Microsoft JhengHei",Arial,sans-serif;background:linear-gradient(135deg,#f7f3ff,#e0f7ff 55%,#fff7ed);color:var(--ink)}
+button,input,select{font-family:inherit}.app{max-width:1180px;margin:0 auto;padding:18px}.hero{background:linear-gradient(135deg,#8b5cf6,#06b6d4);border-radius:28px;color:white;padding:28px;box-shadow:0 18px 40px rgba(87,60,160,.25);position:relative;overflow:hidden}.hero:after{content:"";position:absolute;right:-60px;top:-60px;width:240px;height:240px;background:rgba(255,255,255,.18);border-radius:50%}.hero h1{margin:0;font-size:34px}.hero p{font-size:18px;opacity:.95}.grid{display:grid;gap:16px}.two{grid-template-columns:repeat(2,minmax(0,1fr))}.three{grid-template-columns:repeat(3,minmax(0,1fr))}.four{grid-template-columns:repeat(4,minmax(0,1fr))}@media(max-width:850px){.two,.three,.four{grid-template-columns:1fr}.hero h1{font-size:28px}}
+.card{background:rgba(255,255,255,.88);backdrop-filter:blur(8px);border:1px solid rgba(139,92,246,.13);border-radius:22px;padding:18px;box-shadow:0 10px 25px rgba(35,35,80,.08)}.section{margin-top:18px}.hidden{display:none!important}.btn{border:0;border-radius:16px;padding:12px 16px;background:var(--p1);color:white;cursor:pointer;font-weight:800;box-shadow:0 8px 15px rgba(139,92,246,.22);transition:.18s}.btn:hover{transform:translateY(-1px)}.btn.secondary{background:#fff;color:var(--p1);border:2px solid #ddd6fe}.btn.cyan{background:var(--p2)}.btn.gold{background:var(--p3)}.btn.red{background:var(--bad)}.btn.green{background:var(--good)}.btn:disabled{opacity:.45;cursor:not-allowed;transform:none}.choice,.unit,.role,.mapTile,.equip{padding:16px;border:2px solid #e5e7eb;border-radius:20px;background:white;cursor:pointer;transition:.15s}.choice:hover,.unit:hover,.role:hover,.mapTile:hover,.equip:hover{border-color:#a78bfa;transform:translateY(-2px)}.selected{border-color:var(--p1)!important;background:#f3e8ff!important}.topbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin:14px 0}.pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:8px 12px;background:white;border:1px solid #e5e7eb;font-weight:800}.avatar{font-size:48px}.small{font-size:13px;color:var(--muted)}.progress{height:14px;background:#e5e7eb;border-radius:999px;overflow:hidden}.bar{height:100%;background:linear-gradient(90deg,#10b981,#06b6d4);width:0%;transition:.3s}.hpbar .bar{background:linear-gradient(90deg,#ef4444,#f59e0b)}.options{display:grid;gap:10px}.option{border:2px solid #e5e7eb;border-radius:18px;background:white;padding:14px;text-align:left;cursor:pointer;font-weight:700}.option:hover{border-color:#8b5cf6}.option.correct{background:#dcfce7;border-color:#10b981}.option.wrong{background:#fee2e2;border-color:#ef4444}.storyBox{background:#111827;color:white;border-radius:22px;padding:16px;line-height:1.7}.badge{display:inline-block;background:#fef3c7;color:#92400e;border-radius:999px;padding:6px 10px;margin:4px;font-weight:800}.shoprow{display:flex;justify-content:space-between;gap:10px;align-items:center;border-top:1px solid #eee;padding:12px 0}.notice{padding:12px;border-radius:16px;background:#ecfeff;border:1px solid #a5f3fc}.footer{margin:25px 0;color:#6b7280;text-align:center}.mono{font-family:ui-monospace,Consolas,monospace}.spark{animation:spark .8s ease}@keyframes spark{0%{transform:scale(1)}50%{transform:scale(1.06)}100%{transform:scale(1)}}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="hero">
+    <h1>🌈 時光星島大冒險</h1>
+    <p>香港小學四年級人文及科學科｜深難度 RPG 學習遊戲</p>
+    <button class="btn gold" onclick="showScreen('roleScreen')">開始冒險</button>
+    <button class="btn secondary" onclick="resetGame()">重設進度</button>
+  </div>
+
+  <div class="topbar card" id="statusBar">
+    <span class="pill">角色：<b id="sRole">未選</b></span>
+    <span class="pill">科目：<b id="sSubject">未選</b></span>
+    <span class="pill">💎 <b id="sGems">0</b></span>
+    <span class="pill">⭐ EXP <b id="sExp">0</b></span>
+    <span class="pill">LV <b id="sLevel">1</b></span>
+    <span class="pill">🏅 <b id="sBadges">0</b></span>
+  </div>
+
+  <section id="roleScreen" class="section card hidden">
+    <h2>1️⃣ 選出玩家角色</h2>
+    <div class="grid two">
+      <div class="role" onclick="selectRole('小王子','🤴')"><div class="avatar">🤴</div><h3>小王子</h3><p>額外 EXP +10%，適合喜歡升級的玩家。</p></div>
+      <div class="role" onclick="selectRole('小公主','👸')"><div class="avatar">👸</div><h3>小公主</h3><p>額外 Gems +10%，適合喜歡收集及裝備的玩家。</p></div>
+    </div>
+  </section>
+
+  <section id="subjectScreen" class="section card hidden">
+    <h2>2️⃣ 選擇挑戰科目</h2>
+    <div class="grid two">
+      <div class="choice" onclick="selectSubject('人文科')"><h3>🏙 人文科</h3><p>香港、中華文化、資訊素養、健康公民。</p></div>
+      <div class="choice" onclick="selectSubject('科學科')"><h3>🔬 科學科</h3><p>地球、生命、能源、電路、光、摩擦力、太空。</p></div>
+    </div>
+  </section>
+
+  <section id="unitScreen" class="section card hidden">
+    <h2>3️⃣ 選擇學習單元 <span class="small">最多可同時選 3 個</span></h2>
+    <div id="unitList" class="grid three"></div>
+    <br><button class="btn cyan" id="startMapBtn" onclick="startAdventure()" disabled>進入星島地圖</button>
+  </section>
+
+  <section id="mapScreen" class="section hidden">
+    <div class="card">
+      <h2>🗺 星島地圖</h2>
+      <div class="storyBox">星島的知識水晶碎裂了。請完成任務、收集星石、升級裝備，讓世界恢復色彩。</div>
+    </div>
+    <div class="grid three section" id="mapTiles"></div>
+    <div class="grid two section">
+      <button class="btn gold" onclick="showScreen('shopScreen')">💎 裝備商店</button>
+      <button class="btn secondary" onclick="showScreen('dashboardScreen'); renderDashboard();">📊 家長 Dashboard</button>
+    </div>
+  </section>
+
+  <section id="quizScreen" class="section card hidden">
+    <div class="topbar">
+      <span class="pill">任務：<b id="qUnit"></b></span>
+      <span class="pill">題目 <b id="qNo">1</b>/<b id="qTotal">10</b></span>
+      <span class="pill">❤️ HP <b id="hp">100</b></span>
+    </div>
+    <div class="progress hpbar"><div class="bar" id="hpBar" style="width:100%"></div></div><br>
+    <div class="progress"><div class="bar" id="qBar"></div></div>
+    <h2 id="questionText"></h2>
+    <div id="optionBox" class="options"></div>
+    <p id="feedback" class="notice hidden"></p>
+    <div class="topbar">
+      <button class="btn secondary" onclick="useHint()">🔦 使用提示</button>
+      <button class="btn secondary" onclick="useRetry()">🔮 使用重試</button>
+      <button class="btn" id="nextBtn" onclick="nextQuestion()" disabled>下一題</button>
+    </div>
+  </section>
+
+  <section id="resultScreen" class="section card hidden">
+    <h2>🎉 任務完成！</h2>
+    <div id="resultText"></div>
+    <button class="btn cyan" onclick="showScreen('mapScreen')">返回地圖</button>
+    <button class="btn gold" onclick="showScreen('shopScreen')">升級裝備</button>
+  </section>
+
+  <section id="shopScreen" class="section card hidden">
+    <h2>💎 裝備商店</h2>
+    <p class="small">用 Gems 升級裝備，幫助學生在深難度題目中取得支援。</p>
+    <div id="equipList"></div>
+    <button class="btn secondary" onclick="showScreen('mapScreen')">返回地圖</button>
+  </section>
+
+  <section id="dashboardScreen" class="section card hidden">
+    <h2>📊 家長 Dashboard</h2>
+    <div id="dashContent"></div>
+    <button class="btn secondary" onclick="showScreen('mapScreen')">返回地圖</button>
+  </section>
+
+  <div class="footer">本 MVP 使用 localStorage 儲存進度；答案選項每次啟動任務都會自動隨機化。</div>
+</div>
+<script>
+const units = {
+  "人文科":["唐朝大事記","宋元放大鏡","香港故事之旅","香港社會的變遷","一國兩制","資訊素養","認清傳媒","傳承中華文化","世界各地文化","醫健好公民","預防疾病"],
+  "科學科":["地球結構","轉動的地球","天氣與氣候","動植物與環境","大自然平衡","植物的繁殖與遺傳","動物的繁殖與遺傳","能源","閉合電路","金屬和非金屬","物質的變化","光的特性","摩擦力","太空科技與生活"]
+};
+const mapInfo = {
+  "人文科":[["🏰","歷史時光城","唐朝大事記、宋元放大鏡、傳承中華文化"],["🌆","維港之城","香港故事之旅、香港社會變遷、一國兩制"],["🌐","資訊谷","資訊素養、認清傳媒"],["🏥","健康小鎮","醫健好公民、預防疾病"],["🌎","世界文化廣場","世界各地文化"]],
+  "科學科":[["🌍","地球之心","地球結構、轉動、天氣與氣候"],["🌳","生命森林","動植物、平衡、繁殖與遺傳"],["⚡","科技工坊","能源、電路、金屬、物質變化"],["🚀","星空基地","光、摩擦力、太空科技"],["🧪","挑戰實驗室","混合科學難題"]]
+};
+const questions = [
+// 人文
+{subject:"人文科",unit:"唐朝大事記",q:"唐朝時，中國人從甚麼地方學會製糖方法？",o:["印度","日本","英國","埃及"],a:"印度",hint:"教材提到由外地傳入製糖方法。"},
+{subject:"人文科",unit:"唐朝大事記",q:"唐朝首都長安最能反映甚麼特色？",o:["國際交流頻繁","只重農業","沒有商業活動","完全封閉"],a:"國際交流頻繁",hint:"長安有很多外國商人及使節。"},
+{subject:"人文科",unit:"唐朝大事記",q:"下列哪項較能反映唐朝文化交流？",o:["外國人來華學習","禁止所有外國人入境","取消所有市場","只使用同一種文字"],a:"外國人來華學習",hint:"唐朝與外地交流密切。"},
+{subject:"人文科",unit:"宋元放大鏡",q:"宋朝海上貿易發達，主要與哪項條件有關？",o:["造船和航海技術進步","完全沒有港口","停止與外地來往","只准陸路貿易"],a:"造船和航海技術進步",hint:"航海能力提高會推動海上貿易。"},
+{subject:"人文科",unit:"宋元放大鏡",q:"元朝時，中西交通較方便，對文化有甚麼影響？",o:["促進文化交流","令交流完全停止","只留下本地文化","所有外來文化消失"],a:"促進文化交流",hint:"交通便利通常會增加交流。"},
+{subject:"人文科",unit:"香港故事之旅",q:"香港有不少歷史建築，主要價值是甚麼？",o:["保存地方歷史記憶","只用作購物中心","完全沒有保育價值","一定要全部拆卸"],a:"保存地方歷史記憶",hint:"歷史建築可讓人認識過去。"},
+{subject:"人文科",unit:"香港故事之旅",q:"要了解香港昔日生活，以下哪項最合適？",o:["參觀歷史建築和博物館","只看遊戲廣告","刪除舊照片","不訪問長者"],a:"參觀歷史建築和博物館",hint:"實地考察和資料能幫助了解歷史。"},
+{subject:"人文科",unit:"香港社會的變遷",q:"1950至1970年代，香港不少居民面對甚麼生活問題？",o:["房屋及生活資源不足","人人住大型別墅","交通完全不擠塞","完全沒有就業需要"],a:"房屋及生活資源不足",hint:"當時人口增長，房屋壓力較大。"},
+{subject:"人文科",unit:"香港社會的變遷",q:"香港由漁村、工業城市走向服務型城市，反映甚麼？",o:["社會和經濟會隨時間改變","香港沒有任何變化","工業永遠最主要","服務業完全消失"],a:"社會和經濟會隨時間改變",hint:"這是社會變遷的例子。"},
+{subject:"人文科",unit:"一國兩制",q:"《基本法》對香港有甚麼作用？",o:["保障香港制度和居民權利","取代所有生活規則","只適用於外國人","與香港無關"],a:"保障香港制度和居民權利",hint:"《基本法》是香港特別行政區的重要法律文件。"},
+{subject:"人文科",unit:"一國兩制",q:"香港特別行政區成立日期是？",o:["1997年7月1日","1984年12月19日","2008年8月8日","1949年10月1日"],a:"1997年7月1日",hint:"回歸日期。"},
+{subject:"人文科",unit:"資訊素養",q:"在網上看到驚人的消息，最好的做法是甚麼？",o:["先查證來源和真確性","立即轉發給所有人","只看標題便相信","故意改圖再分享"],a:"先查證來源和真確性",hint:"資訊素養重視查證。"},
+{subject:"人文科",unit:"資訊素養",q:"下列哪項屬於保護個人資料的行為？",o:["不隨便公開身份證號碼","把密碼告訴陌生人","在公開群組貼住址","使用同一弱密碼"],a:"不隨便公開身份證號碼",hint:"個人資料要保密。"},
+{subject:"人文科",unit:"認清傳媒",q:"廣告中的內容一定完全真實嗎？",o:["不一定，需要分析和查證","一定真實","只要有圖片就真實","朋友分享便一定正確"],a:"不一定，需要分析和查證",hint:"傳媒資訊可能有立場或誤導。"},
+{subject:"人文科",unit:"認清傳媒",q:"閱讀新聞時，哪項做法較理想？",o:["比較不同可靠來源","只看一個不明網站","只看留言區","不理會日期"],a:"比較不同可靠來源",hint:"多角度查證能減少誤信。"},
+{subject:"人文科",unit:"傳承中華文化",q:"中秋節常見的活動是甚麼？",o:["賞月和吃月餅","划龍舟","貼春聯","掃墓"],a:"賞月和吃月餅",hint:"中秋與月亮有關。"},
+{subject:"人文科",unit:"傳承中華文化",q:"傳承文化的意義是甚麼？",o:["認識和延續民族文化特色","忘記所有傳統","只模仿外國文化","禁止節日活動"],a:"認識和延續民族文化特色",hint:"傳承代表保存和延續。"},
+{subject:"人文科",unit:"世界各地文化",q:"不同地方的人有不同生活習慣，我們應怎樣對待？",o:["尊重和理解","取笑別人","強迫別人跟自己一樣","拒絕接觸"],a:"尊重和理解",hint:"尊重多元文化。"},
+{subject:"人文科",unit:"醫健好公民",q:"生病時應怎樣做較合適？",o:["按需要求醫並休息","自行亂服藥","隱瞞病情上學","與同學共用餐具"],a:"按需要求醫並休息",hint:"健康公民要照顧自己和他人。"},
+{subject:"人文科",unit:"預防疾病",q:"預防傳染病，以下哪項最有效？",o:["勤洗手和保持環境清潔","共用毛巾","咳嗽不掩口","不理會疫苗資訊"],a:"勤洗手和保持環境清潔",hint:"個人衛生是預防疾病重點。"},
+// 科學
+{subject:"科學科",unit:"地球結構",q:"地球由外至內主要可分為哪幾層？",o:["地殼、地幔、地核","雲層、海水、泥土","空氣、岩石、植物","太陽、月球、地球"],a:"地殼、地幔、地核",hint:"地球內部有不同層次。"},
+{subject:"科學科",unit:"地球結構",q:"火山噴發與地球哪部分活動較有關？",o:["地球內部能量","月亮反射陽光","植物光合作用","電路閉合"],a:"地球內部能量",hint:"火山與地球內部高溫物質有關。"},
+{subject:"科學科",unit:"轉動的地球",q:"晝夜交替主要由甚麼造成？",o:["地球自轉","地球停止不動","月球自轉","太陽繞地球轉"],a:"地球自轉",hint:"地球自己轉動。"},
+{subject:"科學科",unit:"轉動的地球",q:"地球公轉與哪種現象最有關？",o:["四季變化","電池發電","金屬導電","物質燃燒"],a:"四季變化",hint:"地球圍繞太陽運行。"},
+{subject:"科學科",unit:"天氣與氣候",q:"天氣和氣候的分別是甚麼？",o:["天氣較短期，氣候是長期平均狀況","兩者完全相同","氣候只指今天下雨","天氣一定不會改變"],a:"天氣較短期，氣候是長期平均狀況",hint:"天氣是短時間，氣候看長時間。"},
+{subject:"科學科",unit:"天氣與氣候",q:"香港夏季通常有甚麼特徵？",o:["炎熱潮濕","長期下雪","極度乾冷","永遠沒有雨"],a:"炎熱潮濕",hint:"香港屬亞熱帶氣候。"},
+{subject:"科學科",unit:"動植物與環境",q:"駱駝適合沙漠生活，這是因為牠有甚麼特徵？",o:["能適應乾旱環境","需要長期浸在水中","不能儲存能量","不需要任何水分"],a:"能適應乾旱環境",hint:"生物有適應環境的特徵。"},
+{subject:"科學科",unit:"動植物與環境",q:"生物棲息地被破壞，最可能造成甚麼後果？",o:["生物數量下降","所有生物立即增加","食物鏈更穩定","氣候完全不變"],a:"生物數量下降",hint:"失去棲息地會影響生存。"},
+{subject:"科學科",unit:"大自然平衡",q:"食物鏈中，生產者通常是甚麼？",o:["綠色植物","老虎","細菌全部都是消費者","石頭"],a:"綠色植物",hint:"植物可製造食物。"},
+{subject:"科學科",unit:"大自然平衡",q:"如果某種動物大量減少，可能會怎樣？",o:["影響食物鏈平衡","完全沒有影響","所有動物必定消失","植物不再需要陽光"],a:"影響食物鏈平衡",hint:"生態系統互相影響。"},
+{subject:"科學科",unit:"植物的繁殖與遺傳",q:"開花植物常用甚麼繁殖？",o:["種子","電池","金屬線","玻璃"],a:"種子",hint:"花結果後常產生種子。"},
+{subject:"科學科",unit:"植物的繁殖與遺傳",q:"子代植物與親代相似，這與甚麼有關？",o:["遺傳","摩擦力","光反射","電流"],a:"遺傳",hint:"特徵由親代傳給子代。"},
+{subject:"科學科",unit:"動物的繁殖與遺傳",q:"鳥類多數以甚麼方式繁殖？",o:["產卵","分裂成兩半","插枝","燃燒"],a:"產卵",hint:"鳥類會下蛋。"},
+{subject:"科學科",unit:"動物的繁殖與遺傳",q:"小貓像親代貓，這是甚麼現象？",o:["遺傳","熔化","反射","電路短路"],a:"遺傳",hint:"外貌特徵可由親代傳給下一代。"},
+{subject:"科學科",unit:"能源",q:"以下哪項是可再生能源？",o:["太陽能","煤炭","石油","天然氣"],a:"太陽能",hint:"可再生能源可自然補充。"},
+{subject:"科學科",unit:"能源",q:"使用化石燃料過多，可能造成甚麼問題？",o:["空氣污染和全球暖化","所有污染消失","地球停止自轉","植物不需陽光"],a:"空氣污染和全球暖化",hint:"燃燒化石燃料會排放污染物。"},
+{subject:"科學科",unit:"閉合電路",q:"燈泡要發光，電路通常需要怎樣？",o:["形成閉合電路","電線斷開","沒有電池","只用膠紙"],a:"形成閉合電路",hint:"電流需要完整路徑。"},
+{subject:"科學科",unit:"閉合電路",q:"下列哪項通常是導體？",o:["銅線","膠擦","木尺","紙張"],a:"銅線",hint:"金屬多數能導電。"},
+{subject:"科學科",unit:"金屬和非金屬",q:"金屬一般有甚麼特性？",o:["有光澤和良好導電性","完全不能導熱","一定是透明","一定會浮在水面"],a:"有光澤和良好導電性",hint:"金屬常用於電線和煮食工具。"},
+{subject:"科學科",unit:"金屬和非金屬",q:"塑膠屬於非金屬，常被用作電線外層，主要原因是？",o:["絕緣，較安全","導電最快","一定會生鏽","可發出電流"],a:"絕緣，較安全",hint:"電線外層需要保護人。"},
+{subject:"科學科",unit:"物質的變化",q:"冰變成水屬於甚麼變化？",o:["物理變化","化學變化","生物遺傳","電路變化"],a:"物理變化",hint:"物質狀態改變，但沒有產生新物質。"},
+{subject:"科學科",unit:"物質的變化",q:"鐵生鏽屬於甚麼變化？",o:["化學變化","只改變形狀","沒有新物質產生","地球自轉"],a:"化學變化",hint:"生鏽會產生新物質。"},
+{subject:"科學科",unit:"光的特性",q:"我們能在鏡中看到自己，主要因為光的甚麼現象？",o:["反射","燃燒","摩擦","蒸發"],a:"反射",hint:"鏡面能反射光。"},
+{subject:"科學科",unit:"光的特性",q:"光在同一均勻介質中通常怎樣傳播？",o:["直線傳播","彎曲成圓形","完全停止","只向地下走"],a:"直線傳播",hint:"影子的形成與光直線傳播有關。"},
+{subject:"科學科",unit:"摩擦力",q:"摩擦力通常會怎樣影響移動中的物體？",o:["阻礙物體運動","令物體一定飛起","令物體變透明","產生電池"],a:"阻礙物體運動",hint:"摩擦力方向通常與運動方向相反。"},
+{subject:"科學科",unit:"摩擦力",q:"鞋底有坑紋主要是為了甚麼？",o:["增加摩擦力，防止滑倒","減少所有重量","讓鞋發光","使鞋變成金屬"],a:"增加摩擦力，防止滑倒",hint:"粗糙表面能增加摩擦。"},
+{subject:"科學科",unit:"太空科技與生活",q:"人造衛星可用於哪項生活應用？",o:["天氣預報和導航","煮飯","製造月亮","令地球停止"],a:"天氣預報和導航",hint:"衛星能收集地球和位置資料。"},
+{subject:"科學科",unit:"太空科技與生活",q:"太空衣的主要作用是甚麼？",o:["保護太空人在太空環境中生存","只作表演服裝","讓人不用呼吸","使火箭不用燃料"],a:"保護太空人在太空環境中生存",hint:"太空環境沒有適合人類直接生存的條件。"}
+];
+let state = JSON.parse(localStorage.getItem('tiq_state')||'null') || {role:null,emoji:null,subject:null,selectedUnits:[],gems:100,exp:0,level:1,badges:[],equip:{"知識寶典":1,"探索燈籠":1,"記憶水晶":1,"星圖指南針":1,"魔法背包":1},stats:{played:0,correct:0,total:0,unit:{}}};
+let session = {pool:[],i:0,score:0,hp:100,answered:false,current:null,correctIndex:-1,usedHint:false,usedRetry:false};
+function save(){localStorage.setItem('tiq_state',JSON.stringify(state)); renderStatus();}
+function resetGame(){if(confirm('確定清除所有進度？')){localStorage.removeItem('tiq_state');location.reload();}}
+function showScreen(id){document.querySelectorAll('section').forEach(s=>s.classList.add('hidden'));document.getElementById(id).classList.remove('hidden');renderStatus();if(id==='shopScreen')renderShop();}
+function renderStatus(){sRole.textContent=state.role?state.emoji+' '+state.role:'未選';sSubject.textContent=state.subject||'未選';sGems.textContent=Math.floor(state.gems);sExp.textContent=state.exp;sLevel.textContent=state.level;sBadges.textContent=state.badges.length;}
+function selectRole(name,emoji){state.role=name;state.emoji=emoji;save();showScreen('subjectScreen');}
+function selectSubject(sub){state.subject=sub;state.selectedUnits=[];save();renderUnits();showScreen('unitScreen');}
+function renderUnits(){unitList.innerHTML='';units[state.subject].forEach(u=>{const d=document.createElement('div');d.className='unit'+(state.selectedUnits.includes(u)?' selected':'');d.innerHTML='<h3>'+u+'</h3><p class="small">深難度題目｜可混合抽題</p>';d.onclick=()=>toggleUnit(u);unitList.appendChild(d)});startMapBtn.disabled=state.selectedUnits.length<1;}
+function toggleUnit(u){if(state.selectedUnits.includes(u)){state.selectedUnits=state.selectedUnits.filter(x=>x!==u)}else{if(state.selectedUnits.length>=3){alert('最多只可選擇 3 個單元');return;}state.selectedUnits.push(u)}save();renderUnits();}
+function startAdventure(){renderMap();showScreen('mapScreen');}
+function renderMap(){mapTiles.innerHTML='';mapInfo[state.subject].forEach(m=>{let relevant=state.selectedUnits.some(u=>m[2].includes(u));const d=document.createElement('div');d.className='mapTile';d.innerHTML='<div class="avatar">'+m[0]+'</div><h3>'+m[1]+'</h3><p>'+m[2]+'</p><p class="small">'+(relevant?'已包含你選擇的單元':'也可進行混合挑戰')+'</p><button class="btn">開始任務</button>';d.onclick=()=>startQuiz();mapTiles.appendChild(d)});}
+function shuffle(arr){let a=arr.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a;}
+function startQuiz(){let pool=questions.filter(q=>q.subject===state.subject && state.selectedUnits.includes(q.unit)); if(pool.length<5) pool=questions.filter(q=>q.subject===state.subject); session.pool=shuffle(pool).slice(0,10).map(q=>{let opts=shuffle(q.o);return {...q,shuffled:opts,answerIndex:opts.indexOf(q.a)}});session.i=0;session.score=0;session.hp=100;showScreen('quizScreen');renderQuestion();}
+function renderQuestion(){session.answered=false;session.usedHint=false;session.usedRetry=false;nextBtn.disabled=true;feedback.classList.add('hidden');const q=session.pool[session.i];session.current=q;qUnit.textContent=q.unit;qNo.textContent=session.i+1;qTotal.textContent=session.pool.length;hp.textContent=session.hp;hpBar.style.width=session.hp+'%';qBar.style.width=(session.i/session.pool.length*100)+'%';questionText.textContent=q.q;optionBox.innerHTML='';q.shuffled.forEach((op,idx)=>{const b=document.createElement('button');b.className='option';b.innerHTML=String.fromCharCode(65+idx)+'. '+op;b.onclick=()=>answer(idx,b);optionBox.appendChild(b)});}
+function answer(idx,btn){if(session.answered)return;session.answered=true;const q=session.current;document.querySelectorAll('.option').forEach((b,i)=>{if(i===q.answerIndex)b.classList.add('correct')});if(idx===q.answerIndex){session.score++;let gem=20*(state.role==='小公主'?1.1:1)*(1+(state.equip['魔法背包']-1)*0.05);let exp=Math.round(10*(state.role==='小王子'?1.1:1));state.gems+=gem;state.exp+=exp;feedback.innerHTML='✅ 答對！水晶恢復光芒！ +'+Math.round(gem)+' Gems，+'+exp+' EXP';feedback.classList.remove('hidden');}else{btn.classList.add('wrong');let dmg=Math.max(5,20-(state.equip['記憶水晶']-1)*3);session.hp=Math.max(0,session.hp-dmg);hp.textContent=session.hp;hpBar.style.width=session.hp+'%';feedback.innerHTML='❌ 答錯了。正確答案是：<b>'+q.a+'</b><br>提示：'+q.hint;feedback.classList.remove('hidden');}
+state.stats.correct+= idx===q.answerIndex?1:0;state.stats.total++;state.stats.unit[q.unit]=state.stats.unit[q.unit]||{c:0,t:0};state.stats.unit[q.unit].c+=idx===q.answerIndex?1:0;state.stats.unit[q.unit].t++;levelCheck();save();nextBtn.disabled=false;}
+function useHint(){if(session.usedHint)return;session.usedHint=true;const q=session.current;feedback.innerHTML='🔦 提示：'+q.hint+'<br><span class="small">知識寶典 LV'+state.equip['知識寶典']+' 已啟動。</span>';feedback.classList.remove('hidden');}
+function useRetry(){if(session.usedRetry)return; if(state.equip['記憶水晶']<2){alert('記憶水晶 LV2 或以上才有較佳重試效果。');return;}session.usedRetry=true;session.answered=false;document.querySelectorAll('.option').forEach(b=>b.classList.remove('wrong','correct'));feedback.innerHTML='🔮 已使用重試機會，請再試一次。';feedback.classList.remove('hidden');nextBtn.disabled=true;}
+function nextQuestion(){if(session.i<session.pool.length-1 && session.hp>0){session.i++;renderQuestion()}else finishQuiz();}
+function levelCheck(){let newLv=Math.floor(state.exp/200)+1;if(newLv>state.level){state.level=newLv;document.body.classList.add('spark');setTimeout(()=>document.body.classList.remove('spark'),800)}}
+function finishQuiz(){state.stats.played++;qBar.style.width='100%';let unit=session.pool[0]?.unit||'混合';let badge=unit+'水晶';if(session.score>=7&&!state.badges.includes(badge))state.badges.push(badge);save();resultText.innerHTML='<div class="notice"><h3>成績：'+session.score+'/'+session.pool.length+'</h3><p>獲得水晶：'+(session.score>=7?'✅ '+badge:'未達7題，再挑戰可獲得')+'</p><p>目前 Gems：💎 '+Math.floor(state.gems)+'｜EXP：⭐ '+state.exp+'｜LV '+state.level+'</p></div>';showScreen('resultScreen');}
+const equipCost=[0,50,100,200,500,900];
+function renderShop(){equipList.innerHTML='';Object.keys(state.equip).forEach(name=>{let lv=state.equip[name];let cost=equipCost[lv]||9999;let desc={"知識寶典":"提示功能更清晰","探索燈籠":"顯示關鍵字及圖像提示","記憶水晶":"答錯時可重試及減少扣血","星圖指南針":"尋找隱藏任務和寶箱","魔法背包":"增加 Gems 收益"}[name];const row=document.createElement('div');row.className='shoprow';row.innerHTML='<div><b>'+name+'</b> <span class="badge">LV '+lv+'</span><br><span class="small">'+desc+'</span></div><button class="btn gold" '+(lv>=5||state.gems<cost?'disabled':'')+'>升級 '+cost+'💎</button>';row.querySelector('button').onclick=()=>upgrade(name,cost);equipList.appendChild(row)});}
+function upgrade(name,cost){if(state.gems<cost)return;state.gems-=cost;state.equip[name]++;save();renderShop();}
+function renderDashboard(){let acc=state.stats.total?Math.round(state.stats.correct/state.stats.total*100):0;let html='<div class="grid two"><div class="notice"><h3>整體學習</h3><p>完成任務：'+state.stats.played+'</p><p>總作答：'+state.stats.total+' 題</p><p>正確率：'+acc+'%</p><p>徽章：'+state.badges.join('、')+'</p></div><div class="notice"><h3>裝備等級</h3>'+Object.entries(state.equip).map(([k,v])=>'<p>'+k+'：LV '+v+'</p>').join('')+'</div></div><h3>單元表現</h3>';html+='<div class="grid two">';Object.entries(state.stats.unit).forEach(([u,s])=>{html+='<div class="card"><b>'+u+'</b><p>正確率：'+Math.round(s.c/s.t*100)+'%（'+s.c+'/'+s.t+'）</p></div>'});html+='</div>';dashContent.innerHTML=html;}
+renderStatus(); if(state.role&&state.subject&&state.selectedUnits.length){renderMap();showScreen('mapScreen')}else showScreen('roleScreen');
+</script>
+</body>
+</html>
