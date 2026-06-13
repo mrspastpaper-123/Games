@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MathMon 小一數學訓練家大冒險</title>
+  <style>
+    :root{
+      --bg1:#fff7d6; --bg2:#e8f7ff; --card:#ffffff; --main:#ffcc33; --deep:#3b4cca;
+      --green:#45b36b; --red:#f06464; --blue:#4aa3ff; --purple:#9b6cff; --text:#25314d;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:"Noto Sans TC","Microsoft JhengHei",Arial,sans-serif;background:linear-gradient(135deg,var(--bg1),var(--bg2));color:var(--text);min-height:100vh}
+    .app{max-width:1180px;margin:auto;padding:18px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+    .logo{display:flex;align-items:center;gap:12px}
+    .ball{width:56px;height:56px;border-radius:50%;background:linear-gradient(#ff5d5d 0 47%,#222 48% 54%,#fff 55%);border:4px solid #222;position:relative;box-shadow:0 6px 0 rgba(0,0,0,.12)}
+    .ball:after{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:18px;height:18px;background:#fff;border:4px solid #222;border-radius:50%}
+    h1{font-size:28px;margin:0;color:var(--deep)}
+    .sub{margin:4px 0 0;font-size:15px;color:#566}
+    .stats{display:flex;gap:10px;flex-wrap:wrap}
+    .pill{background:#fff;border:2px solid rgba(59,76,202,.2);border-radius:999px;padding:8px 13px;font-weight:700;box-shadow:0 4px 0 rgba(0,0,0,.06)}
+    .layout{display:grid;grid-template-columns:300px 1fr;gap:16px}
+    .panel,.game-card{background:rgba(255,255,255,.9);border:3px solid rgba(59,76,202,.15);border-radius:24px;box-shadow:0 12px 24px rgba(67,91,140,.12);padding:16px}
+    .panel h2,.game-card h2{margin:0 0 12px;color:var(--deep);font-size:22px}
+    .map{display:grid;gap:10px;max-height:650px;overflow:auto;padding-right:4px}
+    .level{border:0;border-radius:18px;padding:12px;text-align:left;background:#f8fbff;cursor:pointer;border:2px solid #dce8ff;transition:.15s;font-size:15px}
+    .level:hover,.level.active{transform:translateY(-2px);background:#fff4bf;border-color:#ffcc33}
+    .level.done{background:#e9fff0;border-color:#6ed28c}
+    .badge{float:right;font-size:20px}.topic{display:block;font-size:13px;color:#667;margin-top:3px}
+    .progress-wrap{height:22px;background:#e8eefb;border-radius:999px;overflow:hidden;border:2px solid #d6e1f5;margin:12px 0}.progress{height:100%;width:0;background:linear-gradient(90deg,#45b36b,#ffcc33);transition:.3s}
+    .monster-zone{display:flex;align-items:center;gap:16px;margin:10px 0 16px;background:linear-gradient(135deg,#fff3b0,#dff4ff);border-radius:20px;padding:14px;border:2px dashed #8db4ff}
+    .monster{font-size:64px;filter:drop-shadow(0 6px 0 rgba(0,0,0,.08));animation:bounce 1.8s infinite}.speech{font-size:18px;line-height:1.5;font-weight:700}
+    @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+    .qmeta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}.tag{background:#eef4ff;color:#3150b7;border-radius:999px;padding:6px 10px;font-weight:700;font-size:14px}
+    .question{font-size:25px;line-height:1.45;background:#fff;border-radius:18px;padding:18px;border:2px solid #edf1fb;margin-bottom:14px}
+    .answers{display:grid;grid-template-columns:1fr 1fr;gap:12px}.ans{border:0;border-radius:18px;padding:16px;background:#fff;border:3px solid #d9e5ff;font-size:20px;font-weight:800;cursor:pointer;min-height:62px;text-align:left;transition:.12s}.ans:hover{background:#fff7d6;transform:translateY(-2px)}
+    .ans.correct{background:#dbffdf;border-color:#44bf68}.ans.wrong{background:#ffe2e2;border-color:#f06464}
+    .feedback{margin-top:14px;border-radius:18px;padding:14px;font-size:20px;font-weight:800;display:none}.feedback.good{display:block;background:#e7ffef;color:#13763b}.feedback.bad{display:block;background:#fff0d8;color:#8b5600}
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.btn{border:0;border-radius:16px;padding:12px 18px;font-size:17px;font-weight:800;cursor:pointer;background:var(--deep);color:white}.btn.secondary{background:#fff;color:var(--deep);border:2px solid #cad7ff}.btn.red{background:#f06464}.btn.green{background:#45b36b}
+    .drawer{display:none;margin-top:14px;background:#f9fbff;border:2px solid #dce8ff;border-radius:18px;padding:14px}.drawer.show{display:block}.wrong-item{background:white;border-radius:14px;padding:10px;margin:8px 0;border:1px solid #e0e7f7}.small{font-size:14px;color:#667;line-height:1.5}.parent-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.data-card{background:white;border-radius:16px;padding:12px;border:2px solid #e6ecfb;text-align:center}.data-card b{font-size:24px;color:var(--deep)}
+    .modal{position:fixed;inset:0;background:rgba(20,29,55,.55);display:none;align-items:center;justify-content:center;padding:20px}.modal.show{display:flex}.modal-card{background:white;border-radius:26px;max-width:560px;padding:26px;text-align:center;border:4px solid #ffcc33;box-shadow:0 20px 60px rgba(0,0,0,.25)}.modal-card h2{font-size:32px;margin:0 0 10px;color:var(--deep)}
+    @media(max-width:850px){.layout{grid-template-columns:1fr}.answers{grid-template-columns:1fr}.parent-grid{grid-template-columns:repeat(2,1fr)}h1{font-size:23px}.question{font-size:22px}}
+  </style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="logo"><div class="ball"></div><div><h1>MathMon 小一數學訓練家大冒險</h1><p class="sub">香港小一下學期數學｜SEN友善 Pokémon 風格闖關 MVP</p></div></div>
+    <div class="stats"><div class="pill">💎 Gems：<span id="gems">0</span></div><div class="pill">⭐ EXP：<span id="exp">0</span></div><div class="pill">🏅 徽章：<span id="badges">0</span>/10</div></div>
+  </header>
+  <div class="layout">
+    <aside class="panel"><h2>🗺️ 道館地圖</h2><div id="levelMap" class="map"></div><div class="actions"><button class="btn secondary" onclick="toggleDrawer('notebook')">📒 錯題簿</button><button class="btn secondary" onclick="toggleDrawer('parent')">📊 家長數據</button><button class="btn red" onclick="resetGame()">重設</button></div><p class="small">玩法：每題最多3次機會。答對 +5 Gems / +5 EXP。完成每個道館可得一枚徽章。</p></aside>
+    <main class="game-card"><h2 id="levelTitle">Level 1</h2><div class="progress-wrap"><div id="progress" class="progress"></div></div><div class="monster-zone"><div id="monster" class="monster">⚡</div><div class="speech" id="speech">準備好開始數學冒險嗎？</div></div><div class="qmeta"><span class="tag" id="qNo">第1/100題</span><span class="tag" id="tries">機會：3</span><span class="tag" id="streak">連續答對：0</span></div><div class="question" id="question"></div><div class="answers" id="answers"></div><div id="feedback" class="feedback"></div><div class="actions"><button id="nextBtn" class="btn green" onclick="nextQuestion()" style="display:none">下一題 ➡️</button><button class="btn secondary" onclick="readQuestion()">🔊 讀題</button></div><section id="notebook" class="drawer"><h2>📒 錯題簿</h2><div id="wrongList" class="small">暫時沒有錯題。</div></section><section id="parent" class="drawer"><h2>📊 家長數據</h2><div class="parent-grid"><div class="data-card"><b id="doneCount">0</b><br>完成題數</div><div class="data-card"><b id="accuracy">0%</b><br>正確率</div><div class="data-card"><b id="wrongCount">0</b><br>錯題數</div><div class="data-card"><b id="weakTopic">-</b><br>弱項</div></div></section></main>
+  </div>
+</div>
+<div id="modal" class="modal"><div class="modal-card"><h2 id="modalTitle">🎉 完成！</h2><p id="modalText"></p><button class="btn" onclick="closeModal()">繼續挑戰</button></div></div>
+<script>
+const levels=[
+ {name:'電光加法館',topic:'20以內加法',icon:'⚡'}, {name:'火焰減法館',topic:'20以內減法',icon:'🔥'}, {name:'草原排序館',topic:'數字排序',icon:'🌿'}, {name:'岩石比較館',topic:'比較大小',icon:'🪨'}, {name:'時鐘森林館',topic:'認識時間',icon:'🕒'}, {name:'金幣商店館',topic:'香港貨幣',icon:'🪙'}, {name:'彩虹長度館',topic:'長度比較',icon:'🌈'}, {name:'圖形山洞館',topic:'平面圖形',icon:'🔷'}, {name:'雙雙能量館',topic:'重複加法',icon:'✨'}, {name:'冠軍聯盟',topic:'混合挑戰',icon:'👑'}
+];
+const raw=[
+['皮卡丘有8個蘋果，再得到5個，共有多少個？',['12','13','14','15'],1,'先由8開始，再數5下。'],['小火龍有7顆糖果，再得到6顆，共有多少顆？',['11','12','13','14'],2,'7加6可以先湊10。'],['傑尼龜有9粒寶石，再找到4粒，共有多少粒？',['11','12','13','14'],2,'9再加1是10，還有3。'],['6 + 8 = ？',['12','13','14','15'],2,'可以由8開始數6下。'],['5 + 9 = ？',['13','14','15','16'],1,'9加5等於14。'],['8 + 7 = ？',['14','15','16','17'],1,'8加2是10，再加5。'],['9 + 9 = ？',['17','18','19','20'],1,'兩個9合起來是18。'],['10 + 6 = ？',['15','16','17','18'],1,'10加6就是16。'],['7 + 8 = ？',['14','15','16','17'],1,'7加8等於15。'],['4 + 9 = ？',['12','13','14','15'],1,'9加4等於13。'],
+['小火龍有18個能量球，用了5個，還有多少個？',['12','13','14','15'],1,'18減5，可倒數5下。'],['17 − 8 = ？',['8','9','10','11'],1,'由8數到17，共9。'],['15 − 6 = ？',['7','8','9','10'],2,'15減5是10，再減1。'],['19 − 7 = ？',['11','12','13','14'],1,'19減7等於12。'],['20 − 8 = ？',['10','11','12','13'],2,'20減8等於12。'],['16 − 9 = ？',['6','7','8','9'],1,'16減10是6，再加回1。'],['14 − 5 = ？',['8','9','10','11'],1,'14減5等於9。'],['18 − 6 = ？',['11','12','13','14'],1,'18減6等於12。'],['13 − 4 = ？',['8','9','10','11'],1,'13減4等於9。'],['12 − 7 = ？',['4','5','6','7'],1,'12減7等於5。'],
+['哪個數最大？',['12','15','9','14'],1,'最大即最多。'],['哪個數最小？',['8','5','10','7'],1,'最小即最少。'],['13、15、11、18，由小至大排列是？',['11,13,15,18','18,15,13,11','11,15,13,18','13,11,15,18'],0,'由最小開始排。'],['20、16、18、12，由大至小排列是？',['12,16,18,20','20,18,16,12','20,16,18,12','18,20,16,12'],1,'由最大開始排。'],['在 10、13、17、15 中，排第二大的數是？',['13','15','17','10'],1,'先找最大17，再找下一個。'],['11 的下一個數是？',['10','11','12','13'],2,'下一個即加1。'],['19 的前一個數是？',['17','18','19','20'],1,'前一個即減1。'],['14 和 16 中間的數是？',['13','14','15','16'],2,'14、15、16。'],['哪組是由小至大？',['9,8,7','6,9,12','13,11,15','20,18,16'],1,'數字越來越大。'],['哪組是由大至小？',['3,5,7','18,15,12','10,12,14','4,8,6'],1,'數字越來越小。'],
+['16 □ 12，應填甚麼？',['>','<','=','+'],0,'16比12大。'],['9 □ 9，應填甚麼？',['>','<','=','−'],2,'兩邊一樣多。'],['7 □ 11，應填甚麼？',['>','<','=','+'],1,'7比11小。'],['20 □ 18，應填甚麼？',['>','<','=','−'],0,'20比18大。'],['13 □ 15，應填甚麼？',['>','<','=','+'],1,'13比15小。'],['10+5 □ 16，應填甚麼？',['>','<','=','−'],1,'10+5是15。'],['8+7 □ 15，應填甚麼？',['>','<','=','+'],2,'8+7正好是15。'],['19−4 □ 12，應填甚麼？',['>','<','=','−'],0,'19−4是15。'],['6+6 □ 13，應填甚麼？',['>','<','=','+'],1,'6+6是12。'],['17−7 □ 10，應填甚麼？',['>','<','=','−'],2,'17−7是10。'],
+['長針指12，短針指3，是幾時？',['1時','2時','3時','4時'],2,'長針指12是整點。'],['長針指12，短針指7，是幾時？',['6時','7時','8時','9時'],1,'短針指7。'],['早上起床通常是？',['7時','12時','3時','10時'],0,'很多小朋友約7時起床。'],['午飯時間較可能是？',['1時','4時','8時','10時'],0,'午飯多在中午附近。'],['長針指12，短針指10，是？',['9時','10時','11時','12時'],1,'短針指10。'],['一星期有多少天？',['5天','6天','7天','8天'],2,'一星期有7天。'],['今天是星期一，明天是？',['星期日','星期一','星期二','星期三'],2,'明天是下一天。'],['今天是星期五，昨天是？',['星期三','星期四','星期五','星期六'],1,'昨天是前一天。'],['長針指12，短針指12，是？',['9時','10時','11時','12時'],3,'短針指12。'],['放學後較可能是？',['下午3時','凌晨3時','早上6時','晚上12時'],0,'放學多在下午。'],
+['皮卡丘有$5和$2，共有多少元？',['$6','$7','$8','$9'],1,'5加2等於7。'],['$10 + $5 = ？',['$13','$14','$15','$16'],2,'10加5等於15。'],['買一枝鉛筆$6，付$10，找回多少？',['$2','$3','$4','$5'],2,'10減6等於4。'],['兩個$2硬幣共有多少？',['$2','$3','$4','$5'],2,'2加2等於4。'],['$20 − $8 = ？',['$10','$11','$12','$13'],2,'20減8等於12。'],['一個包$7，一盒奶$5，共多少？',['$10','$11','$12','$13'],2,'7加5等於12。'],['有$15，買$9文具，餘下多少？',['$5','$6','$7','$8'],1,'15減9等於6。'],['哪個最多錢？',['$5','$10','$2','$1'],1,'10元最多。'],['$8和$8合共多少？',['$14','$15','$16','$17'],2,'8加8等於16。'],['$12買$5貼紙，還有多少？',['$6','$7','$8','$9'],1,'12減5等於7。'],
+['哪個較長？',['5厘米','8厘米','一樣','不知道'],1,'8厘米比5厘米長。'],['哪個較短？',['12厘米','9厘米','15厘米','20厘米'],1,'9厘米最短。'],['鉛筆長10厘米，橡皮長4厘米，哪個較長？',['鉛筆','橡皮','一樣','不能比較'],0,'10比4大。'],['紅線6厘米，藍線6厘米，兩者？',['紅線長','藍線長','一樣長','都短'],2,'兩個都是6厘米。'],['15厘米 □ 11厘米',['較長','較短','一樣','不能量'],0,'15比11大。'],['7厘米 □ 13厘米',['較長','較短','一樣','不能量'],1,'7比13小。'],['哪個單位可量短物件？',['厘米','星期','元','時'],0,'厘米是長度單位。'],['尺可以用來量甚麼？',['長度','金錢','時間','天氣'],0,'尺用來量長度。'],['書本長18厘米，卡片長9厘米，相差多少？',['8厘米','9厘米','10厘米','11厘米'],1,'18減9等於9。'],['繩子20厘米，剪去5厘米，餘下多少？',['14厘米','15厘米','16厘米','17厘米'],1,'20減5等於15。'],
+['有4條邊的是？',['圓形','三角形','正方形','橢圓形'],2,'正方形有4條邊。'],['有3條邊的是？',['圓形','三角形','長方形','正方形'],1,'三角形有3條邊。'],['沒有角的是？',['圓形','三角形','正方形','長方形'],0,'圓形沒有角。'],['長方形有多少條邊？',['2','3','4','5'],2,'長方形有4條邊。'],['正方形的四條邊是？',['一樣長','全部不同','只有兩條','沒有邊'],0,'正方形四邊一樣長。'],['哪個像車輪？',['圓形','三角形','正方形','長方形'],0,'車輪多是圓形。'],['哪個像門？',['圓形','三角形','長方形','星形'],2,'門多是長方形。'],['兩個三角形共有多少條邊？',['5','6','7','8'],1,'3加3等於6。'],['兩個正方形共有多少個角？',['6','7','8','9'],2,'4加4等於8。'],['哪個不是平面圖形？',['圓形','三角形','正方形','足球'],3,'足球是立體物件。'],
+['2 + 2 + 2 = ？',['4','5','6','7'],2,'三個2是6。'],['3 + 3 = ？',['5','6','7','8'],1,'兩個3是6。'],['5 + 5 = ？',['9','10','11','12'],1,'兩個5是10。'],['4 + 4 + 4 = ？',['10','11','12','13'],2,'三個4是12。'],['10 + 10 = ？',['18','19','20','21'],2,'兩個10是20。'],['2個盒，每盒有4粒糖，共有？',['6','7','8','9'],2,'4加4等於8。'],['3隻小精靈，每隻有2個果子，共有？',['5','6','7','8'],1,'2+2+2=6。'],['4 + 4 = ？',['7','8','9','10'],1,'兩個4是8。'],['6 + 6 = ？',['10','11','12','13'],2,'兩個6是12。'],['3 + 3 + 3 = ？',['8','9','10','11'],1,'三個3是9。'],
+['8 + 7 = ？',['14','15','16','17'],1,'8加7等於15。'],['18 − 9 = ？',['8','9','10','11'],1,'18減9等於9。'],['$10 + $5 = ？',['$14','$15','$16','$17'],1,'10加5等於15。'],['17 > 15 嗎？',['是','否','一樣','不知道'],0,'17比15大。'],['哪個圖形有3條邊？',['圓形','三角形','正方形','長方形'],1,'三角形有3條邊。'],['7 + 9 = ？',['15','16','17','18'],1,'7加9等於16。'],['20 − 7 = ？',['11','12','13','14'],2,'20減7等於13。'],['2 + 2 + 2 + 2 = ？',['6','7','8','9'],2,'四個2是8。'],['最小的是？',['12','7','10','9'],1,'7最小。'],['皮卡丘有10個精靈球，再得到10個，共有多少個？',['18','19','20','21'],2,'10加10等於20。']
+];
+let state={idx:0,gems:0,exp:0,badges:[],tries:3,streak:0,answered:false,attempts:0,correctFirst:0,completed:0,wrong:[],topicWrong:{}};
+function qLevel(i){return Math.floor(i/10)}
+function save(){localStorage.setItem('mathmonState',JSON.stringify(state))}
+function load(){const s=localStorage.getItem('mathmonState'); if(s){state=JSON.parse(s); state.badges=state.badges||[]; state.topicWrong=state.topicWrong||{};}}
+function renderMap(){levelMap.innerHTML='';levels.forEach((l,i)=>{const b=document.createElement('button');b.className='level '+(i===qLevel(state.idx)?'active ':'')+(state.badges.includes(i)?'done':'');b.innerHTML=`<b>${l.icon} Level ${i+1}：${l.name}</b><span class="badge">${state.badges.includes(i)?'🏅':'🔒'}</span><span class="topic">${l.topic}</span>`;b.onclick=()=>{state.idx=i*10;state.tries=3;state.answered=false;showQ();};levelMap.appendChild(b);});}
+function showQ(){const q=raw[state.idx], li=qLevel(state.idx), l=levels[li]; levelTitle.textContent=`${l.icon} Level ${li+1}：${l.name}｜${l.topic}`; monster.textContent=l.icon; speech.textContent='選出正確答案，幫 MathMon 收集能量！'; qNo.textContent=`第${state.idx+1}/100題`; tries.textContent=`機會：${state.tries}`; streak.textContent=`連續答對：${state.streak}`; progress.style.width=`${state.idx}%`; question.textContent=q[0]; feedback.className='feedback'; feedback.style.display='none'; nextBtn.style.display='none'; answers.innerHTML=''; q[1].forEach((a,i)=>{let btn=document.createElement('button');btn.className='ans';btn.textContent=String.fromCharCode(65+i)+'. '+a;btn.onclick=()=>choose(i,btn);answers.appendChild(btn)});renderMap();updateStats();save();}
+function choose(i,btn){if(state.answered)return; state.attempts++; const q=raw[state.idx], ok=i===q[2]; if(ok){btn.classList.add('correct');state.answered=true;state.gems+=5;state.exp+=5;state.completed=Math.max(state.completed,state.idx+1); if(state.tries===3)state.correctFirst++; state.streak++; if(state.streak>0 && state.streak%3===0){state.gems+=10; feedback.innerHTML='🎉 Good Job！連續答對3題！⭐ +5 EXP　💎 +15 Gems';} else feedback.innerHTML='🎉 Good Job！⭐ +5 EXP　💎 +5 Gems'; feedback.className='feedback good'; feedback.style.display='block'; nextBtn.style.display='inline-block'; speech.textContent='太好了！小精靈升級了！'; checkBadge();}else{btn.classList.add('wrong'); state.tries--; state.streak=0; addWrong(q); if(state.tries>0){feedback.innerHTML=`💡 提示：${q[3]}<br>請再試一次，你還有 ${state.tries} 次機會。`; feedback.className='feedback bad'; feedback.style.display='block'; tries.textContent=`機會：${state.tries}`;}else{feedback.innerHTML=`正確答案是：${q[1][q[2]]}<br>不要緊，下一題再努力！`; feedback.className='feedback bad'; feedback.style.display='block'; state.answered=true; nextBtn.style.display='inline-block';}}
+updateStats();save();}
+function addWrong(q){const topic=levels[qLevel(state.idx)].topic;state.topicWrong[topic]=(state.topicWrong[topic]||0)+1;if(!state.wrong.some(w=>w.q===q[0])) state.wrong.push({q:q[0],ans:q[1][q[2]],tip:q[3],topic});renderWrong();}
+function nextQuestion(){if(state.idx<99){state.idx++;state.tries=3;state.answered=false;showQ()}else{openModal('👑 恭喜成為 MathMon Master！',`你完成100題！共得到 ${state.gems} Gems 和 ${state.badges.length} 枚徽章。`)}}
+function checkBadge(){const li=qLevel(state.idx); if((state.idx+1)%10===0 && !state.badges.includes(li)){state.badges.push(li);openModal('🏅 獲得新徽章！',`你完成了 ${levels[li].name}，得到「${levels[li].topic}徽章」！`);}}
+function updateStats(){gems.textContent=state.gems;exp.textContent=state.exp;badges.textContent=state.badges.length;doneCount.textContent=state.completed;wrongCount.textContent=state.wrong.length;let acc=state.attempts?Math.round(state.correctFirst/state.attempts*100):0;accuracy.textContent=acc+'%';let weak=Object.entries(state.topicWrong).sort((a,b)=>b[1]-a[1])[0];weakTopic.textContent=weak?weak[0]:'-';renderWrong();}
+function renderWrong(){wrongList.innerHTML=state.wrong.length?'':'暫時沒有錯題。';state.wrong.forEach(w=>{const d=document.createElement('div');d.className='wrong-item';d.innerHTML=`<b>${w.topic}</b><br>${w.q}<br>✅ ${w.ans}<br>💡 ${w.tip}`;wrongList.appendChild(d);});}
+function toggleDrawer(id){document.getElementById(id).classList.toggle('show')}
+function readQuestion(){const u=new SpeechSynthesisUtterance(question.textContent);u.lang='zh-HK';speechSynthesis.cancel();speechSynthesis.speak(u)}
+function resetGame(){if(confirm('確定要重設遊戲進度？')){localStorage.removeItem('mathmonState');state={idx:0,gems:0,exp:0,badges:[],tries:3,streak:0,answered:false,attempts:0,correctFirst:0,completed:0,wrong:[],topicWrong:{}};showQ();}}
+function openModal(t,txt){modalTitle.textContent=t;modalText.textContent=txt;modal.classList.add('show')}function closeModal(){modal.classList.remove('show')}
+load();showQ();
+</script>
+</body>
+</html>
