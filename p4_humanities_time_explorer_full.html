@@ -1,178 +1,157 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>小四人文科｜時空探索號高階星球版</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>香港小四人文科｜時空探索號：高階星球版</title>
 <style>
-:root{--ink:#20304a;--blue:#4978ff;--cyan:#37c6ff;--pink:#ff78b6;--gold:#ffc83d;--green:#24c982;--red:#ff5b6e;--bg1:#eaf5ff;--bg2:#fff4fb;--card:#ffffffee}
-*{box-sizing:border-box}body{margin:0;font-family:"Noto Sans TC","Microsoft JhengHei",Arial,sans-serif;color:var(--ink);background:radial-gradient(circle at 10% 0%,#fff 0,#e9f5ff 30%,#fff3fb 70%,#eef0ff 100%);min-height:100vh}button{font-family:inherit}.top{background:linear-gradient(135deg,#263b76,#6b4dff);color:white;padding:18px 16px;text-align:center;position:sticky;top:0;z-index:10;box-shadow:0 6px 20px #0002}.top h1{margin:0;font-size:28px}.top p{margin:6px 0 0}.wrap{max-width:1180px;margin:auto;padding:18px}.hidden{display:none!important}.panel{background:var(--card);border-radius:24px;padding:20px;box-shadow:0 10px 30px #1d2d6b18;border:1px solid #fff}.hud{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-bottom:14px}.pill{background:white;border-radius:999px;padding:9px 14px;box-shadow:0 4px 15px #0001;font-weight:800}.btn{border:0;background:linear-gradient(135deg,var(--blue),#7c58ff);color:white;border-radius:16px;padding:12px 18px;font-size:16px;font-weight:800;cursor:pointer;box-shadow:0 6px 14px #4978ff40;margin:5px;transition:.18s}.btn:hover{transform:translateY(-2px)}.btn.alt{background:#70839e}.btn.green{background:linear-gradient(135deg,#1fc978,#1ba866)}.btn.red{background:linear-gradient(135deg,#ff5b6e,#d93754)}.btn.gold{background:linear-gradient(135deg,#ffb42e,#ff8d1a)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:15px}.area{position:relative;overflow:hidden;cursor:pointer;min-height:170px;background:radial-gradient(circle at 30% 25%,#fff,#dff0ff 45%,#a8c6ff 100%);border:2px solid #e4edff;border-radius:34px;isolation:isolate}.area:before{content:'';position:absolute;right:-35px;bottom:-35px;width:115px;height:115px;border-radius:50%;background:#ffffff45}.area:after{content:'✦';position:absolute;right:18px;top:14px;font-size:26px;color:#fff;opacity:.85}.area:hover{transform:translateY(-3px);border-color:var(--blue)}.area .emoji{font-size:42px}.area.done:after{content:'🏅';position:absolute;right:12px;top:8px;font-size:34px;color:inherit;opacity:1}.roleBox{display:grid;grid-template-columns:130px 1fr;gap:14px;align-items:center}.avatar{width:120px;height:120px;border-radius:28px;background:linear-gradient(#fff,#f3f3f3);display:flex;align-items:center;justify-content:center;box-shadow:inset 0 -8px 0 #0000000d,0 8px 18px #0001;position:relative}.lillih{width:78px;height:98px;background:#b9bbc2;border:4px dashed #d94151;border-radius:42px 42px 32px 32px;position:relative}.lillih:before,.lillih:after{content:'';position:absolute;width:25px;height:55px;background:#b9bbc2;border:4px dashed #d94151;border-bottom:0;border-radius:22px 22px 6px 6px;top:-47px}.lillih:before{left:8px}.lillih:after{right:8px}.eye{position:absolute;top:28px;width:20px;height:20px;border-radius:50%;border:3px solid #d94151}.eye.one{left:17px;background:#ffd94a}.eye.two{right:17px;background:#ff9bd0}.ship{height:160px;border-radius:26px;background:linear-gradient(135deg,#0f1c4d,#4c69ff 55%,#8adfff);color:white;padding:18px;position:relative;overflow:hidden}.ship:before{content:'✨ ✦ ✧ ✦ ✨';position:absolute;right:18px;top:12px;font-size:30px;opacity:.65}.mapline{height:8px;background:linear-gradient(90deg,#ffcd4d,#45d28d,#4aa3ff,#ff86c8);border-radius:999px;margin:18px 0}.levelBtns{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}.progress{height:18px;background:#dfe8fb;border-radius:999px;overflow:hidden}.bar{height:100%;width:0;background:linear-gradient(90deg,#42c5ff,#24c982,#ffc83d);transition:.3s}.question{font-size:23px;font-weight:900;line-height:1.45;background:#f7faff;border:2px solid #e6efff;border-radius:20px;padding:18px}.scenario{font-size:16px;background:#fff8df;border-left:8px solid var(--gold);padding:12px;border-radius:12px;margin:8px 0 12px}.option{display:block;width:100%;border:2px solid #dce7ff;background:white;color:var(--ink);border-radius:18px;padding:14px 16px;margin:10px 0;text-align:left;font-size:18px;cursor:pointer}.option:hover{border-color:var(--blue);background:#f4f8ff}.option:disabled{opacity:.72;cursor:not-allowed}.feedback{min-height:88px;font-size:22px;font-weight:900;text-align:center;padding:12px}.goodMsg{color:#0e9d62}.badMsg{color:#cf2b47}.shake{animation:shake .35s}@keyframes shake{25%{transform:translateX(-5px)}50%{transform:translateX(5px)}75%{transform:translateX(-3px)}}.pop{animation:pop .55s}@keyframes pop{50%{transform:scale(1.12)}}table{width:100%;border-collapse:collapse;background:white;border-radius:14px;overflow:hidden}th,td{padding:10px;border-bottom:1px solid #edf0f7;text-align:left;vertical-align:top}th{background:#eef4ff}.dash{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}.stat{text-align:center;background:#f7faff;border-radius:18px;padding:15px}.stat b{font-size:27px;color:var(--blue)}.charCards{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}.char{border:2px solid #e7eeff;border-radius:20px;padding:14px;background:white;cursor:pointer}.char.selected{border-color:var(--pink);box-shadow:0 0 0 4px #ff78b622}.small{font-size:13px;color:#61708a}.boss{background:linear-gradient(135deg,#fff1f1,#fff7dc);border:2px solid #ffd28b}.timer{color:#e44459}.tag{display:inline-block;background:#eef4ff;border-radius:999px;padding:5px 10px;margin:2px;font-size:13px}.stars{font-size:28px;letter-spacing:3px}.footerNote{text-align:center;color:#65728a;font-size:13px;margin:18px}.danger{color:#e44459}.ok{color:#159864}@media(max-width:700px){.roleBox{grid-template-columns:1fr}.avatar{margin:auto}.top h1{font-size:21px}.question{font-size:19px}}
+:root{--bg1:#111443;--bg2:#38156b;--gold:#ffd45a;--cyan:#69e7ff;--pink:#ff73c8;--green:#79ffb2;--card:rgba(255,255,255,.12);--white:#fff;--red:#ff5f7a}
+*{box-sizing:border-box}body{margin:0;font-family:'Microsoft JhengHei','Noto Sans TC',Arial,sans-serif;background:radial-gradient(circle at 20% 10%,#5336a5,transparent 28%),radial-gradient(circle at 80% 5%,#0f86a0,transparent 30%),linear-gradient(135deg,var(--bg1),var(--bg2));min-height:100vh;color:#fff;overflow-x:hidden}.stars:before{content:"";position:fixed;inset:0;background-image:radial-gradient(#fff 1px,transparent 1px);background-size:34px 34px;opacity:.22;pointer-events:none}.wrap{max-width:1180px;margin:auto;padding:22px}.top{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}.title{font-size:clamp(24px,4vw,46px);font-weight:900;letter-spacing:1px;text-shadow:0 4px 0 #0004}.pill{padding:10px 15px;border:1px solid #fff4;background:#ffffff1a;border-radius:999px;font-weight:800}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}.card{background:var(--card);border:1px solid #fff2;box-shadow:0 14px 35px #0005;border-radius:26px;padding:22px;backdrop-filter:blur(10px)}button{border:0;border-radius:18px;padding:13px 18px;font-size:18px;font-weight:900;cursor:pointer;transition:.15s;box-shadow:0 6px 0 #0003}button:hover{transform:translateY(-2px)}.primary{background:linear-gradient(135deg,#ffe66d,#ff9f43);color:#2e1746}.secondary{background:linear-gradient(135deg,#65e8ff,#6b8cff);color:#111443}.danger{background:linear-gradient(135deg,#ff7b9b,#ff4e50);color:white}.ghost{background:#ffffff22;color:white;border:1px solid #fff4}.planet{min-height:180px;position:relative;overflow:hidden}.planet .emoji{font-size:58px}.planet h3{margin:8px 0 5px;font-size:23px}.planet small{opacity:.85}.planet:after{content:"";position:absolute;width:120px;height:120px;border-radius:50%;right:-22px;bottom:-35px;background:radial-gradient(circle,#fff7,transparent 65%)}.levels{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.level{padding:8px 11px;border-radius:12px;background:#fff2;border:1px solid #fff3;font-weight:900}.level.done{background:#6dff9d55}.hidden{display:none!important}.hero{display:grid;grid-template-columns:1fr 1fr;gap:18px}.avatar{font-size:76px;text-align:center}.selected{outline:4px solid var(--gold)}.hud{display:flex;gap:10px;flex-wrap:wrap;margin:15px 0}.progress{height:18px;border-radius:999px;background:#0005;overflow:hidden;border:1px solid #fff3}.bar{height:100%;width:0%;background:linear-gradient(90deg,var(--green),var(--cyan),var(--gold));transition:.4s}.question{font-size:24px;line-height:1.55;font-weight:900}.options{display:grid;gap:12px;margin-top:18px}.opt{text-align:left;background:#fff;color:#1d1840;border:3px solid transparent}.opt:hover{border-color:var(--gold)}.feedback{font-size:24px;font-weight:900;margin-top:18px;padding:18px;border-radius:22px;background:#fff2}.correct{background:#22c55e33}.wrong{background:#ef444433}.badge{display:inline-block;margin:6px;padding:10px 14px;background:#fff2;border-radius:999px;border:1px solid #fff3}.table{width:100%;border-collapse:collapse;overflow:hidden;border-radius:18px}.table th,.table td{border-bottom:1px solid #fff2;padding:10px;text-align:left}.mapline{position:relative}.ship{font-size:54px;animation:float 2.4s ease-in-out infinite}@keyframes float{50%{transform:translateY(-10px)}}.celebrate{font-size:48px;animation:pop .8s ease infinite alternate}@keyframes pop{to{transform:scale(1.12) rotate(3deg)}}@media(max-width:700px){.hero{grid-template-columns:1fr}.question{font-size:20px}.opt{font-size:16px}.wrap{padding:14px}}
 </style>
 </head>
-<body>
-<header class="top"><h1>🚀 時空探索號｜香港小四人文科高階星球版</h1><p>小公主 / 小戰士角色選擇｜8個星球探索｜Boss挑戰｜錯題簿｜家長Dashboard</p></header>
-<div class="wrap">
-<section id="home">
-  <div class="hud">
-    <span class="pill">💎 Gems：<span id="homeGems">0</span></span>
-    <span class="pill">🏅 徽章：<span id="homeBadges">0</span></span>
-    <span class="pill">🎯 難度：高階思考</span>
-    <span><button class="btn alt" onclick="showChars()">選擇角色</button><button class="btn alt" onclick="showWrongBook()">錯題簿</button><button class="btn alt" onclick="showDashboard()">家長Dashboard</button></span>
-  </div>
-  <div class="ship panel"><h2>🚀 時空探索號啟動！</h2><p>請先選擇「小公主」或「小戰士」，再乘坐時空探索號前往8個知識星球。每區 Level 1–5 加入情境分析、比較、推論和應用題。</p></div>
-  <h2>🪐 星球探索地圖</h2><div class="mapline"></div><div id="areaGrid" class="grid"></div>
-</section>
-<section id="chars" class="hidden panel"><h2>🎭 選擇玩家角色</h2><div class="charCards" id="charGrid"></div><button class="btn alt" onclick="goHome()">返回</button></section>
-<section id="levels" class="hidden panel"><h2 id="areaTitle"></h2><p id="areaDesc"></p><div class="levelBtns" id="levelBtns"></div><button class="btn alt" onclick="goHome()">返回地圖</button></section>
-<section id="game" class="hidden panel">
-  <div class="hud"><span class="pill" id="gameArea"></span><span class="pill">Level <span id="levelNo"></span></span><span class="pill">💎 <span id="gems">0</span></span><span class="pill timer">⏱️ <span id="timer">60</span>s</span><span class="pill">錯誤 <span id="wrongCount">0</span>/3</span></div>
-  <div class="roleBox"><div class="avatar"><div class="lillih"><span class="eye one"></span><span class="eye two"></span></div></div><div><div id="buddyText" class="scenario">Lillih：慢慢來，我會陪你一起分析題目。</div><div class="progress"><div id="progressBar" class="bar"></div></div></div></div>
-  <div id="scenario" class="scenario"></div><div id="questionText" class="question"></div><div id="options"></div><div id="feedback" class="feedback"></div>
-  <button id="nextBtn" class="btn green hidden" onclick="nextQuestion()">下一題 ▶</button><button id="retryBtn" class="btn gold hidden" onclick="retryQuestion()">請再試一次 🔄</button><button class="btn alt" onclick="quitGame()">離開</button>
-</section>
-<section id="dashboard" class="hidden panel"><h2>📊 家長 Dashboard</h2><div id="dashStats" class="dash"></div><h3>AI學習分析</h3><div id="analysisText"></div><button class="btn alt" onclick="goHome()">返回</button></section>
-<section id="wrongBook" class="hidden panel"><h2>📒 錯題簿</h2><div id="wrongTable"></div><button class="btn" onclick="startWrongPractice()">重新練習模式</button><button class="btn red" onclick="clearWrongBook()">清空錯題簿</button><button class="btn alt" onclick="goHome()">返回</button></section>
-<div class="footerNote">所有答案在每次出題時自動隨機排列，A/B/C/D 正確答案位置會重新對齊。</div>
+<body class="stars"><div class="wrap">
+  <div class="top"><div><div class="title">🛸 時空探索號：小四人文科高階版</div><div>穿梭8個知識星球，收集 🏅 人文徽章</div></div><div class="pill" id="playerInfo">未選角色</div></div>
+
+  <section id="screenCharacter" class="card">
+    <h2>1️⃣ 選擇你的探索員角色</h2>
+    <div class="hero">
+      <div class="card char" data-char="男探索員" data-emoji="👦🏻"><div class="avatar">👦🏻</div><h2>小戰士</h2><p>勇敢、冷靜，適合挑戰高階題目。</p><button class="primary">選擇小戰士</button></div>
+      <div class="card char" data-char="女探索員" data-emoji="👧🏻"><div class="avatar">👧🏻</div><h2>小公主</h2><p>細心、聰明，擅長觀察資料和推理。</p><button class="primary">選擇小公主</button></div>
+    </div>
+  </section>
+
+  <section id="screenMap" class="hidden">
+    <div class="hud"><span class="pill">💎 Gems：<b id="gems">0</b></span><span class="pill">🔥 連續答對：<b id="streak">0</b></span><span class="pill">🏅 徽章：<b id="badgeCount">0</b></span><button class="ghost" onclick="showDashboard()">📊 家長 Dashboard</button><button class="ghost" onclick="showMistakes()">📖 錯題簿</button><button class="danger" onclick="resetAll()">重新開始全部</button></div>
+    <div class="card mapline"><div class="ship">🛸</div><h2>2️⃣ 選擇探索星球</h2><div class="grid" id="planetGrid"></div></div>
+  </section>
+
+  <section id="screenLevels" class="hidden card"><button class="ghost" onclick="goMap()">← 返回星球地圖</button><h2 id="levelTitle"></h2><div class="grid" id="levelGrid"></div></section>
+
+  <section id="screenQuiz" class="hidden card">
+    <button class="ghost" onclick="goLevels()">← 返回 Level</button>
+    <div class="hud"><span class="pill" id="quizArea"></span><span class="pill" id="quizLevel"></span><span class="pill">錯誤次數：<b id="wrongCount">0</b>/3</span><span class="pill">本題機會：<b id="triesLeft">2</b></span></div>
+    <div class="progress"><div class="bar" id="progressBar"></div></div><p id="progressText"></p>
+    <div class="question" id="questionText"></div><div class="options" id="options"></div><div id="feedback" class="feedback hidden"></div>
+  </section>
+
+  <section id="screenDashboard" class="hidden card"><button class="ghost" onclick="goMap()">← 返回地圖</button><h2>📊 家長 Dashboard</h2><div class="grid"><div class="card"><h3>本週學習時間</h3><div class="celebrate" id="studyTime">0分鐘</div></div><div class="card"><h3>總遊戲次數</h3><div class="celebrate" id="gamesPlayed">0次</div></div><div class="card"><h3>完成關卡</h3><div class="celebrate" id="doneLevels">0 / 40</div></div><div class="card"><h3>準確率</h3><div class="celebrate" id="accuracy">0%</div></div></div><h3>強項 / 弱項分析</h3><div id="analysisBox"></div></section>
+
+  <section id="screenMistakes" class="hidden card"><button class="ghost" onclick="goMap()">← 返回地圖</button><h2>📖 錯題簿</h2><p>自動記錄題目、日期、錯誤答案和正確答案。</p><button class="secondary" onclick="startMistakePractice()">🔄 重新練習模式</button><div id="mistakeList"></div></section>
 </div>
 <script>
-const areas=[
- {id:'env',name:'環境與氣候',icon:'🌦️',badge:'環境策略師',desc:'地圖、香港地勢、城市發展、四季氣候、災害安全'},
- {id:'earth',name:'地球是我家',icon:'🌍',badge:'地球守護者',desc:'大洲大洋、自然環境、自然災害、資源與可持續發展'},
- {id:'culture',name:'世界文化之窗',icon:'🎎',badge:'文化分析家',desc:'中外文化、建築、服飾、禮儀、文化尊重'},
- {id:'health',name:'關注健康',icon:'❤️',badge:'健康守護者',desc:'健康習慣、預防疾病、醫療服務、病人權責'},
- {id:'history',name:'國家歷史和文化',icon:'🏮',badge:'中華文化大使',desc:'歷史人物、節日、文物、傳統思想'},
- {id:'hk',name:'香港今昔',icon:'🏙️',badge:'香港探索家',desc:'城市發展、交通、保育、社區變遷'},
- {id:'law',name:'《基本法》與我',icon:'📜',badge:'基本法小公民',desc:'權利、責任、守法、公民參與'},
- {id:'info',name:'資訊新世代',icon:'💻',badge:'數碼公民',desc:'網絡安全、AI、資訊素養、網絡禮儀'}
-];
-const chars=[
- {id:'princess',name:'👸 小公主',power:'答錯時獲得溫柔提示，適合需要安心感的學生',line:'不要緊，我們慢慢想，一步一步找答案。'},
- {id:'warrior',name:'🛡️ 小戰士',power:'Boss題時間加10秒，適合喜歡挑戰的學生',line:'集中精神！先找關鍵字，再排除錯誤選項。'}
-];
-const base={
-env:[
- ['情境：小晴要由西營盤步行到上環文娛中心，她需要知道街道和建築物位置。','她最應使用哪種地圖？',['香港街道圖','世界地圖','亞洲地圖','學校平面圖'],0,'街道圖最適合找道路、街市、醫院、學校等具體位置。'],
- ['情境：政府考慮在北部都會區發展住宅和創科產業，但附近有濕地。','以下哪項做法最符合可持續發展？',['同時規劃住宅、交通和濕地保育','只顧興建商場','完全不理會居民需要','把所有濕地填平'],0,'可持續發展要平衡經濟、社會和環境。'],
- ['情境：天文台發出八號東北烈風或暴風信號。','以下哪兩項做法最安全？',['關好窗戶並把花盆搬入室內','到海邊拍浪','在山邊觀察山泥','放風箏測試風力'],0,'颱風時應留在安全地方，固定或搬走易墜物。'],
- ['情境：香港春天潮濕，衣服很久也未乾。','最能解釋這個情況的是哪一項？',['空氣濕度高，水分不易蒸發','香港全年下雪','春天一定無陽光','香港沒有四季'],0,'潮濕天氣令衣物較難乾。'],
- ['情境：一項填海工程可增加土地，但會影響海洋生物。','作決策前最應考慮甚麼？',['不同持份者的需要和環境影響','只聽商界意見','只看工程速度','只看地圖顏色'],0,'城市發展需要多角度分析。'],
- ['情境：山泥傾瀉警告生效，家人打算到斜坡附近遠足。','你應如何建議？',['取消行程並遠離斜坡','照常出發','到斜坡下拍照','乘升降機到山頂'],0,'山泥傾瀉警告生效時應遠離斜坡。'],
- ['情境：要比較香港各區面積和位置。','最合適閱讀甚麼？',['香港全境圖','世界地圖','店舖宣傳單','課室座位表'],0,'香港全境圖能看到香港不同地區的位置。'],
- ['情境：冬天寒冷，長者較容易跌倒。','以下哪項最合理？',['肌肉關節繃緊及血壓變化','因為雪山太多','因為沒有地圖','因為夏天太熱'],0,'寒冷天氣會影響身體狀況，長者尤其要保暖。'],
- ['情境：地圖上有一個十字標誌代表醫院。','這個符號的意思通常由哪部分說明？',['圖例','比例尺','標題','日期'],0,'圖例用來說明地圖符號代表的設施。'],
- ['Boss情境：新機場需要土地，環保人士關心生態，商界關心交通和經濟。','最佳方案應該具備甚麼特點？',['增加土地同時減少生態破壞並聽取各方意見','只要最快完成','只要最便宜','完全不做研究'],0,'高階題要看「平衡」和「證據」。']
-],
-earth:[
- ['情境：熱帶雨林房屋常以高架方式建造。','主要原因是甚麼？',['通風散熱並減少潮濕影響','防止全年下雪','方便看沙漠','用來發電'],0,'熱帶雨林炎熱多雨，房屋設計要配合氣候。'],
- ['情境：沙漠居民穿長袍和用布包頭。','這反映人類如何適應環境？',['防曬、防風沙和減少水分流失','方便游泳','方便滑雪','增加濕氣'],0,'服飾常與當地氣候有關。'],
- ['情境：極地居民穿動物毛皮衣服，主要捕魚維生。','這與哪種自然環境最有關？',['酷寒和終年結冰','炎熱多雨','晝夜溫差大','城市密集'],0,'極地氣候寒冷，生活方式受環境影響。'],
- ['情境：地震發生時，有人想乘升降機離開。','你會如何判斷？',['不應使用升降機，應冷靜前往安全地方','立即使用升降機','跳窗逃生','留在玻璃旁'],0,'地震時升降機可能停頓或受損。'],
- ['情境：過度砍伐樹木後，泥土被雨水沖走。','這最可能造成甚麼？',['水土流失','大洲增加','海水變淡','火山停止'],0,'樹木根部有助保持泥土。'],
- ['情境：煤和石油大量使用。','長遠可能帶來甚麼全球問題？',['氣候變化','水庫增多','森林自然擴大','沙漠消失'],0,'燃燒化石燃料會增加溫室氣體。'],
- ['情境：北方缺水，南方水較多。','國家可採用哪項工程調配水資源？',['南水北調','填海工程','機場跑道','街道圖'],0,'南水北調是調配水資源的工程。'],
- ['情境：三峽工程利用水流發電。','水力發電的優點是甚麼？',['相對潔淨，減少溫室氣體排放','必定沒有任何影響','會增加煤炭使用','會令沙漠擴大'],0,'水力屬較潔淨能源，但工程也要評估環境影響。'],
- ['情境：城市向市民徵收排污費。','主要目的應是甚麼？',['減少污水排放和水質污染','增加市民功課','鼓勵浪費食物','增加風沙'],0,'排污費可鼓勵污染者減少污染。'],
- ['Boss情境：一個地區面對荒漠化、缺水和動物棲息地減少。','以下哪組措施最合理？',['退耕還林、節約用水、保護棲息地','大量砍樹、過度放牧、浪費水','停止所有生活活動','只建更多商場'],0,'資源問題需要綜合治理。']
-],
-culture:[
- ['情境：永廉到泰國寺廟，因衣著不合規定不能進入。','這說明旅遊時應該怎樣？',['尊重當地文化和宗教規定','只按照自己習慣','取笑別人衣著','故意違反規定'],0,'跨文化交流要尊重差異。'],
- ['情境：中國、日本和法國都有不同傳統服飾。','比較文化時，較合適的態度是：',['欣賞不同文化特色','只認為自己文化最好','嘲笑其他文化','不准文化交流'],0,'文化學習重點是理解和尊重。'],
- ['情境：元朗大夫第屋脊有陶塑人偶，窗戶有吉祥雕刻。','這反映甚麼？',['傳統建築包含文化寓意','它是現代商場','它沒有歷史價值','它只用作機場'],0,'建築可反映歷史、信仰和審美。'],
- ['情境：米蘭主教座堂有尖塔和拱頂。','這較可能屬於哪種建築特色？',['哥德式教堂','蒙古包','四合院','土樓'],0,'尖塔、拱頂是哥德式建築常見特徵。'],
- ['情境：佛朗明哥舞常見於西班牙文化。','它屬於哪類文化表現？',['舞蹈藝術','醫療制度','自然災害','交通工具'],0,'舞蹈是文化表現之一。'],
- ['情境：國畫常以山水、人物、花鳥為題材。','這反映國畫重視甚麼？',['自然和意境','電子密碼','街道圖例','醫療服務'],0,'國畫常重視意境與自然。'],
- ['情境：不同國家的餐桌禮儀不同。','較佳做法是：',['先了解和遵守當地禮儀','故意製造噪音','不聽主人提醒','只批評別人'],0,'禮儀是尊重文化的重要方式。'],
- ['情境：孩子看到外國服飾覺得奇怪。','老師最應引導他：',['了解服飾與氣候、歷史和信仰有關','立即取笑','禁止討論','說所有服飾一樣'],0,'服飾背後常有文化和環境原因。'],
- ['情境：文化會隨交流而改變。','保護傳統文化的同時，我們也應：',['接受合理的新文化並珍惜傳統','拒絕所有交流','忘記傳統','只看流行文化'],0,'文化可傳承，也可交流更新。'],
- ['Boss情境：一座歷史建築阻礙新商場發展，但有保育價值。','最合理的處理方法是：',['評估保育價值，尋找活化與發展平衡','立即拆卸','完全不准任何改善','只看商場收入'],0,'文化保育也需要平衡社會需要。']
-],
-health:[
- ['情境：同學每天上網至深夜，白天無精神。','他最需要改善哪方面？',['作息和使用電子產品習慣','地圖閱讀','建築設計','文化服飾'],0,'健康包括生活習慣和心理健康。'],
- ['情境：有同學長時間不更換毛巾。','可能增加甚麼風險？',['病菌滋生和傳播','地震','沙漠擴大','交通增加'],0,'個人衛生能預防疾病。'],
- ['情境：政府呼籲接種季節性流感疫苗。','主要目的是甚麼？',['減低重症和死亡風險','增加生病機會','取代洗手','保證永不生病'],0,'疫苗是預防疾病的重要方法之一。'],
- ['情境：看醫生時，病人隱瞞病情。','這違反了甚麼責任？',['向醫生坦白說出病情','保持課室清潔','尊重文化','使用地圖'],0,'病人有權益，也有合作治療的責任。'],
- ['情境：眼睛經常疲倦，看黑板模糊。','較合適做法是：',['進行視力檢查','繼續長時間打機','不告訴成人','只吃糖'],0,'視力問題應及早檢查。'],
- ['情境：社區出現傳染病，居民不戴口罩又亂吐痰。','這對社區有甚麼影響？',['增加疾病傳播風險','改善公共衛生','減少病菌','提升免疫力'],0,'公共衛生依靠每個人的行為。'],
- ['情境：王先生到私家診所看病。','這屬於哪類醫療服務？',['私營醫療服務','公營醫療服務','學校旅行','交通服務'],0,'私家診所屬私營醫療服務。'],
- ['情境：同學情緒長期低落。','較合適的建議是：',['向可信任成人或專業人士求助','獨自忍受','被取笑','停止上學'],0,'心理健康問題需要支援。'],
- ['情境：飯前飯後洗手、定期刷牙和運動。','這些屬於甚麼？',['健康生活習慣','自然災害','文化衝突','城市規劃'],0,'生活習慣對預防疾病重要。'],
- ['Boss情境：學校要降低流感傳播。','以下哪組措施最完整？',['接種、洗手、戴口罩、病時休息和健康教育','只開冷氣','只貼海報','完全不通知家長'],0,'預防疾病需要多項措施配合。']
-],
-history:[
- ['情境：學生參觀故宮，看到大量古代文物。','參觀文物最能幫助我們了解甚麼？',['國家歷史和文化','天氣預報','網絡密碼','街道方向'],0,'文物是認識歷史的重要證據。'],
- ['情境：春節時家人團聚、拜年和貼揮春。','這反映甚麼文化意義？',['辭舊迎新和家庭團聚','防震建築','水力發電','地圖比例'],0,'節日活動有文化象徵。'],
- ['情境：孔子提倡仁、禮等思想。','他主要代表哪一學派？',['儒家','法國印象派','沙漠學派','數碼公民'],0,'孔子是儒家重要代表。'],
- ['情境：絲綢之路連接中國與外地。','它主要促進甚麼？',['貿易和文化交流','山泥傾瀉','颱風形成','水土流失'],0,'絲綢之路促進中外交流。'],
- ['情境：長城修建在北方。','它在古代其中一項作用是：',['防禦','發電','捕魚','治病'],0,'長城有防禦功能。'],
- ['情境：造紙術改變了知識傳播方式。','它屬於哪類成就？',['中國古代四大發明','香港公共交通','醫療服務','網絡安全'],0,'造紙術是四大發明之一。'],
- ['情境：兵馬俑排列成軍隊模樣。','它與哪位歷史人物關係最密切？',['秦始皇','李白','孔子','孫中山'],0,'兵馬俑與秦始皇陵有關。'],
- ['情境：保護古蹟需要花費資源。','為甚麼仍值得保護？',['保存歷史記憶和文化價值','增加垃圾','阻礙所有發展','令學生不用學習'],0,'古蹟有教育與文化價值。'],
- ['情境：京劇有唱、念、做、打。','它屬於甚麼？',['中國傳統戲曲','西方樂器','醫療服務','天氣警告'],0,'京劇是中國傳統戲曲。'],
- ['Boss情境：城市發展需要拆除一座古建築，但居民認為有歷史價值。','最合理程序是：',['進行歷史價值評估並諮詢公眾','立即拆除','完全不研究','只聽一方意見'],0,'歷史文化議題要用證據和公眾參與。']
-],
-hk:[
- ['情境：香港由漁港發展成國際城市。','最能反映這變化的是：',['經濟和交通網絡更發達','全年下雪','人口完全消失','只剩農田'],0,'香港城市發展與貿易交通密切相關。'],
- ['情境：維多利亞港水深港闊。','昔日對香港有甚麼幫助？',['促進航運和貿易','製造沙漠','阻止交流','增加冰川'],0,'良好港口有利貿易。'],
- ['情境：舊區有歷史建築，也有居住需求。','較合適的城市更新方式是：',['兼顧保育和改善生活環境','全部拆卸','完全不改善','只建豪宅'],0,'城市更新需平衡居民和保育。'],
- ['情境：啟德機場搬到赤鱲角。','其中一個原因可能是：',['配合航空發展和城市需要','因為香港變成沙漠','因為沒有飛機','因為要停止交通'],0,'新機場配合長遠交通發展。'],
- ['情境：新市鎮設有屋邨、學校、公園和商場。','主要作用是：',['提供較完整的社區生活','只供遊客拍照','製造山泥','儲存火山灰'],0,'新市鎮提供住宅和社區設施。'],
- ['情境：保育中環街市後重新開放。','這屬於甚麼做法？',['活化歷史建築','破壞文物','自然災害','醫療服務'],0,'活化可讓舊建築有新用途。'],
- ['情境：昔日很多人住在唐樓。','唐樓可幫助我們了解：',['昔日居住環境','極地生活','外太空','火山形成'],0,'建築反映不同年代生活。'],
- ['情境：港鐵、巴士、渡輪連接各區。','這反映香港哪方面發展？',['公共交通系統','沙漠治理','古代科舉','熱帶雨林'],0,'公共交通支持城市運作。'],
- ['情境：旅遊人士到大澳認識棚屋和漁村文化。','這屬於認識香港哪方面？',['本地傳統生活和社區文化','網絡密碼','基本法條文','全球暖化'],0,'大澳保留部分漁村特色。'],
- ['Boss情境：舊區重建會改善環境，但居民擔心租金上升和社區消失。','較全面的處理是：',['諮詢居民、保留特色並提供安置支援','只追求地價','立即清走居民','完全停止所有改善'],0,'香港今昔題重點是城市發展與人情社區。']
-],
-law:[
- ['情境：學生在升旗禮嬉戲吵鬧。','較合適的態度是：',['保持莊重和尊重','大聲談笑','隨意離開','取笑同學'],0,'國旗和區旗應受到尊重。'],
- ['情境：居民享有權利，也要守法。','這說明甚麼？',['權利和責任並重','只有權利沒有責任','法律只管成人','學生不用守法'],0,'公民要明白權責平衡。'],
- ['情境：香港居民可依法表達意見。','表達意見時應注意：',['理性、守法和尊重他人','散播謠言','破壞公物','攻擊別人'],0,'自由需在法律和尊重下行使。'],
- ['情境：同學問《基本法》是甚麼。','最準確回答是：',['香港特別行政區的憲制性文件','普通故事書','街道地圖','飲食指南'],0,'《基本法》規定香港特區制度。'],
- ['情境：香港的官方語文包括中文和英文。','這反映基本法保障了甚麼安排？',['語文使用安排','全年下雪','無需上學','不能交流'],0,'基本法訂明官方語文。'],
- ['情境：有人在網上公開別人的私人資料。','這可能侵犯甚麼？',['私隱和個人資料權益','地圖比例','天氣資料','文化服飾'],0,'個人資料應受保護。'],
- ['情境：學生參與班會選舉。','這可培養甚麼？',['公民參與和責任感','浪費時間','不守規則','只顧玩樂'],0,'參與公共事務可訓練公民意識。'],
- ['情境：香港居民有受教育權利。','同時學生也應：',['努力學習和尊重校規','完全不用上課','破壞課室','拒絕學習'],0,'權利常伴隨責任。'],
- ['情境：遇到不公平事情。','較合理做法是：',['循合法途徑表達和求助','以暴力解決','散播謠言','破壞公物'],0,'法治社會重視合法程序。'],
- ['Boss情境：同學說「有自由就可以想做甚麼都做」。','你應如何分析？',['自由要在不違法和不傷害他人的情況下行使','完全正確','只適用於成人','自由等於不用負責'],0,'高階公民題要理解自由與責任的界線。']
-],
-info:[
- ['情境：你收到短訊要求輸入銀行密碼領獎。','最安全做法是：',['不要點擊，並告訴成人','立即輸入密碼','轉發給朋友','下載附件'],0,'可疑連結可能是網絡釣魚。'],
- ['情境：同學用「123456」做密碼。','為甚麼不安全？',['容易被猜中','太難記','不能打開電腦','會令天氣變差'],0,'強密碼應較長且混合字母、數字和符號。'],
- ['情境：網上看到一段未證實健康資訊。','應該先做甚麼？',['查證來源是否可靠','立即相信','叫所有人服用','改寫成謠言'],0,'資訊素養包括查證。'],
- ['情境：有人在群組取笑同學外貌。','這屬於甚麼問題？',['網絡欺凌','文化保育','水力發電','地圖閱讀'],0,'網絡欺凌會造成心理傷害。'],
- ['情境：AI可以幫你整理資料。','使用AI時仍應：',['自己思考和核對答案','完全照抄','不看來源','提交錯誤資料'],0,'AI是工具，不應取代判斷。'],
- ['情境：網友問你家中地址和學校名稱。','應如何處理？',['不要透露個人資料並告訴成人','立即告訴他','約出來見面','公開在社交平台'],0,'保護個人資料是網絡安全重點。'],
- ['情境：同學每天打機到凌晨，功課退步。','這反映甚麼？',['過度使用電子產品影響生活','學習一定更好','健康一定改善','文化更豐富'],0,'數碼生活要有時間管理。'],
- ['情境：在網上留言前，應考慮甚麼？',['內容是否真實、有禮和負責任','是否能傷害別人','是否最多人轉發','是否最誇張'],0,'良好數碼公民要尊重他人。'],
- ['情境：下載不明來歷程式。','可能帶來甚麼風險？',['病毒或資料外洩','一定提升成績','令電腦更安全','增加睡眠'],0,'不明程式可能含惡意軟件。'],
- ['Boss情境：你要用網上資料做報告。','最合適的流程是：',['搜尋多個可靠來源、比較、整理、註明來源','複製第一個結果','只看標題','使用匿名留言作唯一證據'],0,'高階資訊題重視來源、比較和負責任使用。']
-]
+const planets=[['環境與氣候','🏔️','地圖、香港地勢、氣候、災害與可持續發展'],['地球是我家','🌍','七大洲、自然環境、自然災害、資源保育'],['世界文化之窗','🎎','中外文化、建築、服飾、習俗與文化尊重'],['關注健康','❤️','身心健康、疾病預防、醫療服務與病人權益'],['國家歷史和文化','🏮','中華文化、歷史名人、節日、文物與國家發展'],['香港今昔','🏙️','香港歷史、城市發展、社區變遷與保育'],['《基本法》與我','📜','一國兩制、居民權利、責任與法治精神'],['資訊新世代','💻','網絡安全、資訊素養、AI科技與數碼公民']];
+const templates={
+'環境與氣候':[
+['若要同時判斷香港某地點的方向、距離和設施，最需要綜合運用哪三項地圖元素？',['方向標、比例尺、圖例','標題、故事、相片','人口、天氣、日期','電話、地址、顏色'],0,'先想想找路時需要知道方向、遠近和符號意思。'],
+['政府發展北部都會區時，最能體現可持續發展的做法是甚麼？',['增加土地和住宅，同時保護重要濕地','只興建商場，不理自然生態','完全停止所有城市建設','把所有濕地改成道路'],0,'可持續發展要平衡人類需要和環境保護。'],
+['香港山地多、平地少，這個地勢特點最直接影響甚麼？',['土地發展和城市規劃','香港全年下雪','香港沒有街道圖','香港不需要交通'],0,'想想平地不足會影響建屋和道路。'],
+['颱風襲港時，把花盆搬入室內的主要原因是甚麼？',['防止強風吹落造成危險','增加室內濕度','方便植物曬太陽','令花盆變重'],0,'強風會令高處物件跌下。'],
+['香港春天潮濕，家中牆身和衣物容易發霉，較合適的應對方法是甚麼？',['使用抽濕機並保持通風','長時間開暖爐','把窗戶永遠打開','把衣物放在浴室'],0,'潮濕要減少濕氣。'],
+['若街道圖沒有圖例，使用者最可能遇到甚麼困難？',['不清楚符號代表甚麼設施','不能知道今天日期','不能知道世界有多少洲','不能知道香港人口'],0,'圖例是解釋地圖符號的。'],
+['填海能增加土地，但爭議較大，主要原因是甚麼？',['可能改變海岸和影響生物棲息地','一定令香港下雪','會令所有山地消失','會令街道圖不能使用'],0,'發展會影響自然環境。'],
+['山泥傾瀉警告生效時，最安全的行動是甚麼？',['遠離斜坡並留意官方消息','到斜坡下拍照','使用升降機逃生','把花盆放在窗邊'],0,'山泥傾瀉與斜坡有關。'],
+['冬季寒冷天氣下，長者較易跌倒，較完整的原因是甚麼？',['血壓變化，加上肌肉和關節較繃緊','長者突然長高','冬天一定有暴雪','長者不需要保暖'],0,'寒冷會影響身體狀態。'],
+['電子地圖相比紙本地圖的高階優點是甚麼？',['可即時搜尋、定位和更新路線','一定沒有比例尺','不能顯示方向','只可顯示世界地圖'],0,'電子地圖可互動和更新。']],
+'地球是我家':[
+['熱帶雨林房屋常建於高架上，與當地哪種環境最有關？',['炎熱多雨，需要通風和防潮','終年結冰','晝夜溫差極大','長期缺水'],0,'熱帶雨林多雨又炎熱。'],
+['沙漠居民穿長袍和包頭巾，最主要是適應哪種環境？',['日曬強、風沙多、晝夜溫差大','長期暴雪','森林茂密','海水倒灌'],0,'沙漠需要防曬和防風沙。'],
+['極地居民主要以捕魚維生，反映當地甚麼限制？',['耕地少，氣候酷寒','水資源完全沒有','全年炎熱','人口過多'],0,'極地不利耕種。'],
+['建造防震建築物和設立預警系統，目的相同之處是甚麼？',['減低自然災害對生命和財產的損害','增加火山爆發次數','令地震完全消失','增加旅遊收入'],0,'兩者都是防災減災。'],
+['過度使用煤和石油會加劇氣候變化，主要因為甚麼？',['燃燒時排放大量溫室氣體','會令河流增加','會製造更多森林','會令冰川變厚'],0,'煤和石油是化石燃料。'],
+['荒漠化最可能造成哪個長遠影響？',['可用土地減少，沙漠範圍擴大','雨林增加','河流變多','極地變暖後即時變良田'],0,'荒漠化就是土地逐漸沙漠化。'],
+['南水北調工程主要回應我國哪項資源問題？',['水資源空間分布不均','森林過多','礦產完全消失','人口全部集中南方'],0,'名字已提示把南方水調往北方。'],
+['三峽工程使用水力發電，屬於潔淨能源的原因是甚麼？',['發電過程可減少燃煤和溫室氣體排放','完全不需要水','會增加沙塵暴','只用於種植農作物'],0,'水力可替代部分燃煤發電。'],
+['水污染最直接影響哪項生活需要？',['安全飲用水和食物生產','地圖方向標','傳統服飾','火山數量'],0,'水和飲食、農業有關。'],
+['保護地球資源的合理做法是甚麼？',['節約使用並減少浪費','無限制開採','浪費食物和用水','任意砍伐森林'],0,'合理使用才可長遠使用。']],
+'世界文化之窗':[
+['比較中國、日本和法國文化時，最合適的學習態度是甚麼？',['尊重差異，理解文化背景','只認為自己文化最好','嘲笑不同服飾','拒絕學習外國文化'],0,'文化學習重點是尊重。'],
+['米蘭主教座堂的尖塔和拱頂主要反映哪種建築特色？',['哥德式天主教建築特色','蒙古包特色','中國四合院特色','現代屋邨特色'],0,'尖塔、拱頂常見於哥德式教堂。'],
+['韓國佛國寺受中國建築影響，說明甚麼？',['文化會因交流而互相影響','文化永遠不會改變','所有寺院都在法國','建築與宗教無關'],0,'文化交流會帶來影響。'],
+['在泰國寺廟不宜向人潑水或衣著不合規定，反映我們應怎樣做？',['尊重當地宗教和習俗','把旅行當成遊戲','只跟自己喜好行事','不需要了解規則'],0,'不同場合有不同禮儀。'],
+['傳統服飾、樂器和建築物都可用來研究甚麼？',['一個地方的文化特色','一個地方的天氣報告','一個地方的股票價格','一個地方的路線距離'],0,'這些都是文化材料。'],
+['西洋畫題材和色彩多樣，與中國畫重視山水人物相比，說明甚麼？',['藝術表達受文化和歷史背景影響','所有畫作內容完全相同','中國畫沒有文化價值','西洋畫不能研究'],0,'藝術是文化的一部分。'],
+['元朗大夫第的高台基、陶塑人偶和吉祥雕刻，最能反映甚麼？',['傳統建築的實用和吉祥寓意','極地防寒方法','沙漠交通工具','現代網絡安全'],0,'建築特色常反映生活和信念。'],
+['農曆新年、清明和中秋等節日有不同習俗，主要功能是甚麼？',['延續家庭、社群和文化記憶','改變地圖比例尺','令天氣變冷','取代醫療服務'],0,'節日承載文化。'],
+['接觸新文化時仍珍惜傳統文化，這屬於甚麼態度？',['開放而有文化自覺','完全拒絕新事物','只模仿外國文化','否定本地傳統'],0,'要開放心態，也珍惜自身文化。'],
+['不同國家都有代表建築，研究時不應只看外形，還應了解甚麼？',['歷史、宗教和生活背景','餐廳價格','電子地圖定位','每日溫度'],0,'建築背後有文化背景。']],
+'關注健康':[
+['良好生活習慣中，「每天長時間上網」通常不健康，主要原因是甚麼？',['可能影響視力、睡眠和心理健康','一定能強身健體','可取代所有運動','能預防所有疾病'],0,'過量使用電子產品有風險。'],
+['預防疾病時，個人衛生和社區衛生有何關係？',['兩者都可減低傳染病傳播風險','只有個人衛生重要','社區衛生與疾病無關','只需依靠藥物'],0,'防病需要個人和社區配合。'],
+['接種季節性流感疫苗的主要公共衛生目的包括甚麼？',['減低重症和死亡風險','令所有人不再生病','增加上網時間','取代洗手習慣'],0,'疫苗主要減低感染和重症風險。'],
+['病人向醫生清楚說明病情，主要履行哪項責任？',['提供正確資料以協助診斷','要求立即開抗生素','隱瞞病歷','自行停藥'],0,'醫生需要準確資料。'],
+['病人權益包括知情權和申訴權，這反映醫療服務應重視甚麼？',['尊重、透明和責任','只重視速度','不需解釋治療','病人不能提問'],0,'權益與尊重有關。'],
+['心理健康出現問題時，較恰當做法是甚麼？',['向可信任成人或專業人士求助','一直隱瞞和忍受','嘲笑自己','停止所有社交'],0,'求助是健康行為。'],
+['保持心境開朗、恆常運動和充足睡眠，屬於哪類健康概念？',['身心健康並重','只照顧牙齒','只處理疾病後果','只靠藥物'],0,'健康包括身體和心理。'],
+['牙肉腫痛和刷牙流血時，較合適的處理是甚麼？',['尋求牙科檢查並改善口腔護理','完全停止刷牙','只吃甜食','自行拔牙'],0,'口腔問題要專業檢查。'],
+['社區健康教育資訊可透過互聯網發放，但市民仍要注意甚麼？',['查證資料來源是否可靠','看到就一定相信','只看標題','轉發所有消息'],0,'網上健康資訊要查證。'],
+['醫健好公民應如何面對傳染病？',['注意個人衛生，生病時減少接觸他人','隨地吐痰','不洗手','共用毛巾'],0,'減少傳播是公民責任。']],
+'國家歷史和文化':[
+['學習國家歷史時，文物和古蹟的重要作用是甚麼？',['提供認識過去生活和文化的證據','只作裝飾用途','用來預測天氣','取代所有文字記錄'],0,'文物是歷史證據。'],
+['長城在歷史上的主要功能之一是甚麼？',['防禦和保護邊疆','水力發電','展示電子科技','治療疾病'],0,'長城與防禦有關。'],
+['孔子的思想對中國文化影響深遠，常與哪項價值相關？',['重視學習、禮儀和道德修養','鼓勵浪費資源','拒絕教育','破壞家庭關係'],0,'孔子重視教育和禮。'],
+['端午節與屈原故事相關，這類節日故事有何文化功能？',['傳承歷史記憶和價值觀','改變地勢','增加沙漠','取代醫院'],0,'節日故事承載文化。'],
+['中國四大名著屬於重要文化資源，原因是甚麼？',['反映文學、歷史想像和社會價值','只提供地圖路線','只可作醫療指引','沒有閱讀價值'],0,'名著是文學文化。'],
+['保護非物質文化遺產如傳統工藝，最重要原因是甚麼？',['保存技藝和文化記憶','增加污染','令文化消失','減少學習機會'],0,'非遺需要傳承。'],
+['國家發展科技和保護文化遺產應如何平衡？',['推動創新，同時保護歷史文化','只發展科技，拆除所有古蹟','完全停止發展','把文物當作垃圾'],0,'發展與保育可並行。'],
+['參觀博物館時應有甚麼態度？',['遵守規則，尊重展品和其他參觀者','大聲喧嘩','觸摸所有文物','隨地丟垃圾'],0,'博物館需要守規。'],
+['中華文化中的書法、國畫和傳統音樂共同反映甚麼？',['審美、情感和文化精神','只反映天氣','只用於交通','完全沒有歷史'],0,'藝術表達文化精神。'],
+['認識國家歷史文化對小學生有何意義？',['建立文化認同和理解國家發展','只為背答案','不用尊重他人文化','取代所有科目'],0,'歷史文化有助身份認同。']],
+'香港今昔':[
+['香港由漁村發展成國際城市，主要反映甚麼？',['經濟、交通和社會結構長期轉變','香港地圖沒有改變','香港全年積雪','香港沒有歷史'],0,'城市發展是長期變遷。'],
+['保育歷史建築如舊警署或古蹟，主要價值是甚麼？',['保存集體回憶和城市歷史','阻止所有交通','增加山泥傾瀉','取代新建築'],0,'古蹟承載歷史記憶。'],
+['填海和新市鎮發展對香港的共同影響是甚麼？',['增加土地供應並改變城市面貌','令所有山地消失','令香港變沙漠','完全沒有影響'],0,'兩者都影響土地和城市。'],
+['研究香港今昔，最可靠的方法是甚麼？',['比較相片、地圖、口述歷史和文字資料','只聽一個謠言','只看遊戲分數','完全不用資料'],0,'歷史研究要多種資料。'],
+['舊區重建時需要兼顧居民需要，原因是甚麼？',['城市發展會影響居民生活和社區網絡','居民與城市無關','只需考慮商業利益','所有舊樓都沒有價值'],0,'重建會影響人。'],
+['香港交通由渡輪、電車到港鐵網絡，反映甚麼？',['交通科技和城市規模變化','香港沒有交通','人口必定減少','文化完全消失'],0,'交通變化反映城市發展。'],
+['社區設施如街市、公園和圖書館增加，通常代表甚麼？',['居民生活需要受到重視','自然災害增加','居民不需服務','醫療服務消失'],0,'社區設施服務居民。'],
+['保留傳統節慶和本地小店，有助維持甚麼？',['地方特色和社區文化','水資源分布','地震預警','網絡密碼'],0,'這些與社區文化有關。'],
+['香港作為國際城市，較常見的特色是甚麼？',['中外文化交流頻繁','只有單一文化','沒有外來影響','不需要交通'],0,'香港有多元文化交流。'],
+['面對城市急速發展，較理想的態度是甚麼？',['在改善生活和保育特色之間取得平衡','拆除所有舊建築','拒絕所有新建設','只重視商業收益'],0,'發展與保育要平衡。']],
+'《基本法》與我':[
+['《基本法》在香港的作用主要是甚麼？',['規定香港特別行政區的制度和居民權利義務','提供天氣預報','安排學校午餐','管理電子遊戲'],0,'基本法是香港憲制性文件。'],
+['「一國兩制」中的「一國」是指甚麼？',['香港是中國不可分離的部分','香港屬於另一個國家','香港沒有法律','香港只是一個學校'],0,'一國是前提。'],
+['居民享有權利時，也應履行甚麼？',['遵守法律和尊重他人權利','只享受權利不負責任','任意破壞公物','散播假消息'],0,'權利與責任並重。'],
+['法治精神最強調甚麼？',['人人依法辦事，法律面前人人平等','有權者不用守法','只靠個人喜好判斷','法律可以隨意忽略'],0,'法治重視法律規則。'],
+['學生在學校尊重同學發言，與哪項公民素養最有關？',['尊重他人權利和包容不同意見','只重視自己想法','拒絕溝通','故意打斷別人'],0,'尊重他人是公民素養。'],
+['若遇到不公平事情，較合適做法是甚麼？',['循合法和理性途徑表達意見','即時使用暴力','散播未證實消息','破壞公共設施'],0,'表達意見要合法理性。'],
+['保護個人資料與哪項權利較相關？',['私隱權','天氣權','遊戲權','填海權'],0,'個人資料屬私隱。'],
+['香港居民可依法享有教育機會，這反映甚麼？',['基本權利保障與社會發展有關','教育與法律無關','學生不用守規則','學校可任意拒絕所有學生'],0,'教育是重要權利。'],
+['認識《基本法》對小學生有何幫助？',['明白自己的權利、責任和香港制度','提高遊戲音量','預測颱風路徑','取代所有功課'],0,'基本法教育是公民教育。'],
+['在公共場所守秩序和愛護公物，屬於甚麼表現？',['負責任的公民行為','只為獲得寶石','破壞法治','不尊重社會'],0,'公民要承擔責任。']],
+'資訊新世代':[
+['收到網上健康或新聞消息時，最重要的第一步是甚麼？',['查證來源和日期','立即轉發','只看圖片','相信最多人分享的版本'],0,'資訊素養要查證。'],
+['網絡密碼應如何設定較安全？',['混合大小寫字母、數字和符號，避免個人資料','使用生日作密碼','所有帳戶同一密碼','把密碼貼在螢幕上'],0,'強密碼不易猜。'],
+['使用AI工具完成學習任務時，較負責任做法是甚麼？',['理解內容、核對資料並標明協助來源','直接複製不閱讀','用AI散播謠言','把錯誤答案當事實'],0,'AI可輔助但要核對。'],
+['網絡欺凌可能造成甚麼影響？',['傷害他人心理健康和人際關係','一定令人更開心','與法律和道德無關','只是一個玩笑'],0,'網絡行為有真實影響。'],
+['保護個人私隱時，不應在網上公開甚麼？',['住址、電話和身份證資料','喜歡的顏色','一般天氣感受','常見學科名稱'],0,'敏感個人資料不可公開。'],
+['看到可疑連結要求輸入帳戶密碼，應怎樣做？',['不要登入，並向成人或平台求助','立即輸入密碼','轉發給同學','下載所有附件'],0,'可能是釣魚網站。'],
+['沉迷電子產品可能影響甚麼？',['睡眠、視力、學習和社交','只會提升健康','一定增加運動量','完全沒有影響'],0,'過度使用有多方面影響。'],
+['網上圖片和影片可能被修改，這提醒我們甚麼？',['不能只憑表面判斷，要多方查證','所有影片都一定真實','只相信短片標題','不用理會來源'],0,'深偽和剪輯可誤導。'],
+['良好的數碼公民應具備甚麼態度？',['尊重、守法、負責任地使用科技','匿名便可任意傷害人','只追求點擊率','不需要同理心'],0,'數碼世界也要守規。'],
+['學校推行資訊科技學習，最理想目標是甚麼？',['提升學習效率和解難能力，同時培養資訊素養','完全取代老師','令學生不用思考','鼓勵長時間玩遊戲'],0,'科技應輔助學習和思考。']]
 };
-function buildData(){let DATA={};areas.forEach(area=>{let arr=[];for(let lv=0;lv<5;lv++){let level=[];for(let i=0;i<10;i++){let b=base[area.id][i];let prefix=['基礎應用','比較判斷','情境推論','多角度分析','Boss高階挑戰'][lv];let opts=b[2].slice(); if(lv>=2){opts=opts.map((o,idx)=>idx===b[3]?o:o.replace('完全','只').replace('立即','馬上'));}
-level.push({scenario:b[0],q:`【${prefix}】${b[1]}`,a:opts,c:b[3],exp:b[4],boss:i===9||lv===4});}arr.push(level)}DATA[area.name]=arr});return DATA}
-const DATA=buildData();
-let S={area:null,level:0,qs:[],i:0,gems:+localStorage.gemsHard||0,streak:0,wrong:0,tries:0,correct:0,played:+localStorage.playedHard||0,completed:+localStorage.completedHard||0,character:localStorage.characterHard||'princess',timer:null,time:60,start:Date.now()};
-function save(){localStorage.gemsHard=S.gems;localStorage.playedHard=S.played;localStorage.completedHard=S.completed;localStorage.characterHard=S.character}
-function wrongBook(){return JSON.parse(localStorage.wrongBookHard||'[]')}function setWrongBook(x){localStorage.wrongBookHard=JSON.stringify(x)}
-function doneBadges(){return JSON.parse(localStorage.badgesHard||'[]')}function setBadges(x){localStorage.badgesHard=JSON.stringify(x)}
-function show(id){['home','chars','levels','game','dashboard','wrongBook'].forEach(x=>document.getElementById(x).classList.add('hidden'));document.getElementById(id).classList.remove('hidden')}
-function shuffleQ(q){let opts=q.a.map((text,idx)=>({text,ok:idx===q.c}));for(let i=opts.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[opts[i],opts[j]]=[opts[j],opts[i]]}return {...q,opts,correctIndex:opts.findIndex(o=>o.ok)}}
-function init(){document.getElementById('homeGems').textContent=S.gems;document.getElementById('homeBadges').textContent=doneBadges().length;let got=doneBadges();document.getElementById('areaGrid').innerHTML=areas.map(a=>`<div class="panel area ${got.includes(a.name)?'done':''}" onclick="chooseArea('${a.name}')"><div class="emoji">${a.icon}</div><h3>${a.name}</h3><p>${a.desc}</p><span class="tag">5 Levels</span><span class="tag">Boss題</span><span class="tag">${got.includes(a.name)?'已取得徽章':'未完成'}</span></div>`).join('')}
-function showChars(){document.getElementById('charGrid').innerHTML=chars.map(c=>`<div class="char ${S.character===c.id?'selected':''}" onclick="S.character='${c.id}';save();showChars()"><h3>${c.name}</h3><p>${c.power}</p><p class="small">${c.line}</p></div>`).join('');show('chars')}
-function chooseArea(name){S.area=name;let a=areas.find(x=>x.name===name);document.getElementById('areaTitle').textContent=`${a.icon} ${name}`;document.getElementById('areaDesc').textContent=a.desc;document.getElementById('levelBtns').innerHTML=[1,2,3,4,5].map(n=>`<button class="btn ${n===5?'red':''}" onclick="startLevel(${n-1})">${n===5?'👑 Boss ':''}Level ${n}<br><span class="small">10題｜限時｜錯3重來</span></button>`).join('');show('levels')}
-function startLevel(l){S.level=l;S.qs=DATA[S.area][l].map(shuffleQ);S.i=0;S.streak=0;S.wrong=0;S.tries=0;S.correct=0;S.played++;S.time=(l===4||S.character==='warrior')?70:60;save();show('game');startTimer();renderQ()}
-function startTimer(){clearInterval(S.timer);document.getElementById('timer').textContent=S.time;S.timer=setInterval(()=>{S.time--;document.getElementById('timer').textContent=S.time;if(S.time<=0){clearInterval(S.timer);failRestart('⏱️ 時間到了！本 Level 重新開始。')}},1000)}
-function buddy(msg){let c=chars.find(x=>x.id===S.character);document.getElementById('buddyText').innerHTML=`${c.name}：${msg||c.line}`}
-function renderQ(){let q=S.qs[S.i];document.getElementById('gameArea').textContent=S.area;document.getElementById('levelNo').textContent=S.level+1;document.getElementById('gems').textContent=S.gems;document.getElementById('wrongCount').textContent=S.wrong;document.getElementById('progressBar').style.width=(S.i/S.qs.length*100)+'%';document.getElementById('scenario').textContent=q.scenario;document.getElementById('scenario').className='scenario '+(q.boss?'boss':'');document.getElementById('questionText').textContent=`第 ${S.i+1}/10 題：${q.q}`;document.getElementById('options').innerHTML=q.opts.map((o,idx)=>`<button class="option" onclick="answer(${idx})">${'ABCD'[idx]}. ${o.text}</button>`).join('');document.getElementById('feedback').innerHTML='';document.getElementById('nextBtn').classList.add('hidden');document.getElementById('retryBtn').classList.add('hidden');buddy(q.boss?'這題是高階Boss題，要先看情境，再排除不合理答案。':'先找題目的關鍵字，再選最合理答案。')}
-function answer(idx){let q=S.qs[S.i];document.querySelectorAll('.option').forEach(b=>b.disabled=true);if(idx===q.correctIndex){let add=5+(q.boss?5:0);if(S.character==='warrior'&&S.streak>=4)add+=5;S.gems+=add;S.streak++;S.correct++;let bonus='';if(S.streak%5===0){S.gems+=20;bonus='<br>🔥 連續答對5題！Bonus +20 Gems'}document.getElementById('feedback').innerHTML=`<div class="goodMsg pop">🎉 Good Job！<br>💎 +${add} Gems${bonus}</div>`;buddy(S.character==='princess'?'答對了！你很細心，繼續保持。':'答對了！你的判斷很快很準。');document.getElementById('nextBtn').classList.remove('hidden')}else{S.wrong++;S.tries++;S.streak=0;recordWrong(q,idx);document.getElementById('game').classList.add('shake');setTimeout(()=>document.getElementById('game').classList.remove('shake'),350);if(S.wrong>=3){failRestart('答錯3題，要重新開始本 Level。')}else if(S.tries<2){let hint=S.character==='princess'?`提示：${q.exp}`:'提示：先排除最不合理的選項，再看情境。';document.getElementById('feedback').innerHTML=`<div class="badMsg">💡 ${hint}</div>`;buddy('不要緊，這次只要找出「最合理」的答案。');document.getElementById('retryBtn').classList.remove('hidden')}else{document.getElementById('feedback').innerHTML=`<div class="badMsg">正確答案：${q.opts[q.correctIndex].text}<br><span class="small">${q.exp}</span></div>`;buddy('我已把這題放入錯題簿，之後可以重新練習。');document.getElementById('nextBtn').classList.remove('hidden')}}save();document.getElementById('gems').textContent=S.gems;document.getElementById('wrongCount').textContent=S.wrong}
-function retryQuestion(){S.tries=0;renderQ()}
-function nextQuestion(){S.tries=0;S.i++;if(S.i>=S.qs.length){clearInterval(S.timer);S.completed++;S.gems+=30;let badges=doneBadges();if(S.level===4&&!badges.includes(S.area)){badges.push(S.area);setBadges(badges);S.gems+=100}save();document.getElementById('progressBar').style.width='100%';document.getElementById('scenario').textContent='';document.getElementById('questionText').innerHTML='🎊 Level 完成！獲得 🏅 人文徽章進度 +1，額外 💎 +30！';document.getElementById('options').innerHTML='';document.getElementById('feedback').innerHTML='<div class="stars">🎆 🎉 🏅 🎉 🎆</div>';document.getElementById('nextBtn').classList.add('hidden');setTimeout(()=>chooseArea(S.area),1800)}else renderQ()}
-function failRestart(msg){clearInterval(S.timer);document.getElementById('feedback').innerHTML=`<div class="badMsg">${msg}</div>`;setTimeout(()=>startLevel(S.level),1400)}
-function recordWrong(q,idx){let wb=wrongBook();wb.push({date:new Date().toLocaleString('zh-HK'),area:S.area,level:S.level+1,question:q.q,scenario:q.scenario,wrong:q.opts[idx].text,correct:q.opts[q.correctIndex].text,exp:q.exp});setWrongBook(wb)}
-function showWrongBook(){let wb=wrongBook();document.getElementById('wrongTable').innerHTML=wb.length?`<table><tr><th>日期</th><th>區域</th><th>題目</th><th>錯誤答案</th><th>正確答案</th></tr>${wb.slice().reverse().map(x=>`<tr><td>${x.date}</td><td>${x.area}<br>L${x.level}</td><td>${x.scenario}<br><b>${x.question}</b><br><span class="small">${x.exp}</span></td><td class="danger">${x.wrong}</td><td class="ok">${x.correct}</td></tr>`).join('')}</table>`:'暫時沒有錯題。';show('wrongBook')}
-function clearWrongBook(){if(confirm('確定清空錯題簿？')){setWrongBook([]);showWrongBook()}}
-function startWrongPractice(){let wb=wrongBook();if(!wb.length){alert('暫時沒有錯題');return}S.area='錯題練習';S.level=0;S.qs=wb.slice(-10).map(x=>shuffleQ({scenario:x.scenario,q:x.question,a:[x.correct,x.wrong,'資料不足，不能判斷','以上皆不是'],c:0,exp:x.exp,boss:false}));S.i=0;S.wrong=0;S.tries=0;S.streak=0;S.time=90;show('game');startTimer();renderQ()}
-function showDashboard(){let wb=wrongBook();let acc=S.played?Math.max(0,Math.round((S.completed*10)/(S.played*10+wb.length)*100)):87;let badges=doneBadges().length;document.getElementById('dashStats').innerHTML=`<div class="stat">本週學習時間<br><b>${Math.max(1,Math.round((Date.now()-S.start)/60000))}</b> 分鐘</div><div class="stat">總遊戲次數<br><b>${S.played||12}</b> 次</div><div class="stat">完成關卡<br><b>${S.completed}</b> / 40</div><div class="stat">徽章<br><b>${badges}</b> / 8</div><div class="stat">準確率<br><b>${acc}%</b></div><div class="stat">錯題數<br><b>${wb.length}</b></div>`;let count={};wb.forEach(x=>count[x.area]=(count[x.area]||0)+1);let weak=Object.entries(count).sort((a,b)=>b[1]-a[1])[0];let strong=areas.find(a=>doneBadges().includes(a.name));document.getElementById('analysisText').innerHTML=`<p><b>強項：</b>${strong?strong.name:'完成較多題目的區域會顯示在這裡'}。</p><p><b>弱項：</b>${weak?weak[0]+'（錯題 '+weak[1]+' 題）':'暫時沒有明顯弱項'}。</p><p><b>建議多練習：</b>錯題簿、Boss高階題、情境分析題。家長可要求孩子先說出「為甚麼其他選項不合理」，再按答案。</p>`;show('dashboard')}
-function quitGame(){clearInterval(S.timer);goHome()}function goHome(){clearInterval(S.timer);show('home');init()}init();
-</script>
-</body>
-</html>
+let state=JSON.parse(localStorage.getItem('p4DeepGame')||'{}');
+state=Object.assign({char:null,emoji:null,gems:0,streak:0,badges:{},done:{},mistakes:[],stats:{games:0,answered:0,correct:0,start:Date.now(),areaCorrect:{},areaTotal:{}}},state);
+let current={area:null,level:1,questions:[],idx:0,wrong:0,tries:2,mistakeMode:false};
+function save(){localStorage.setItem('p4DeepGame',JSON.stringify(state));updateHud()}
+function hideAll(){['screenCharacter','screenMap','screenLevels','screenQuiz','screenDashboard','screenMistakes'].forEach(id=>document.getElementById(id).classList.add('hidden'))}
+function updateHud(){document.getElementById('gems').textContent=state.gems;document.getElementById('streak').textContent=state.streak;document.getElementById('badgeCount').textContent=Object.keys(state.badges).length;document.getElementById('playerInfo').textContent=state.char?`${state.emoji} ${state.char}｜💎 ${state.gems}`:'未選角色'}
+document.querySelectorAll('.char').forEach(c=>c.onclick=()=>{state.char=c.dataset.char;state.emoji=c.dataset.emoji;save();goMap()});
+function goMap(){hideAll();document.getElementById('screenMap').classList.remove('hidden');renderPlanets();save()}
+function renderPlanets(){let box=document.getElementById('planetGrid');box.innerHTML='';planets.forEach((p,i)=>{let area=p[0],doneCount=[1,2,3,4,5].filter(l=>state.done[area+'-'+l]).length;let div=document.createElement('div');div.className='card planet';div.innerHTML=`<div class="emoji">${p[1]}</div><h3>${area}</h3><small>${p[2]}</small><div class="levels">${[1,2,3,4,5].map(l=>`<span class="level ${state.done[area+'-'+l]?'done':''}">L${l}</span>`).join('')}</div><p>完成：${doneCount}/5 ${state.badges[area]?'🏅 已獲徽章':''}</p><button class="secondary">進入星球</button>`;div.querySelector('button').onclick=()=>openLevels(area,p[1]);box.appendChild(div)})}
+function openLevels(area,emoji){current.area=area;hideAll();document.getElementById('screenLevels').classList.remove('hidden');document.getElementById('levelTitle').textContent=`${emoji} ${area}｜選擇 Level`;let box=document.getElementById('levelGrid');box.innerHTML='';for(let l=1;l<=5;l++){let d=document.createElement('div');d.className='card';d.innerHTML=`<h2>Level ${l}</h2><p>10題高階選擇題</p><p>${state.done[area+'-'+l]?'✅ 已完成':'🔒 待挑戰'}</p><button class="primary">開始挑戰</button>`;d.querySelector('button').onclick=()=>startQuiz(area,l);box.appendChild(d)}}
+function goLevels(){openLevels(current.area,planets.find(p=>p[0]==current.area)[1])}
+function makeLevelQuestions(area,level){let base=templates[area];let arr=[];for(let i=0;i<10;i++){let b=base[(i+level-1)%base.length];arr.push({q:`Level ${level}｜${b[0]}`,a:[...b[1]],correct:b[1][b[2]],hint:b[3],area,level})}return arr}
+function shuffleQuestion(q){let opts=q.a.map(x=>({text:x,ok:x===q.correct}));for(let i=opts.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[opts[i],opts[j]]=[opts[j],opts[i]]}return {...q,opts}}
+function startQuiz(area,level){current={area,level,questions:makeLevelQuestions(area,level).map(shuffleQuestion),idx:0,wrong:0,tries:2,mistakeMode:false};state.stats.games++;save();showQuestion()}
+function showQuestion(){hideAll();document.getElementById('screenQuiz').classList.remove('hidden');let q=current.questions[current.idx];document.getElementById('quizArea').textContent=current.area;document.getElementById('quizLevel').textContent=current.mistakeMode?'錯題練習':`Level ${current.level}`;document.getElementById('wrongCount').textContent=current.wrong;document.getElementById('triesLeft').textContent=current.tries;document.getElementById('progressText').textContent=`第 ${current.idx+1} / ${current.questions.length} 題`;document.getElementById('progressBar').style.width=(current.idx/current.questions.length*100)+'%';document.getElementById('questionText').textContent=q.q;let opt=document.getElementById('options');opt.innerHTML='';document.getElementById('feedback').className='feedback hidden';q.opts.forEach((o,i)=>{let b=document.createElement('button');b.className='opt';b.textContent=String.fromCharCode(65+i)+'. '+o.text;b.onclick=()=>answer(o);opt.appendChild(b)})}
+function answer(o){let q=current.questions[current.idx];state.stats.answered++;state.stats.areaTotal[current.area]=(state.stats.areaTotal[current.area]||0)+1;let fb=document.getElementById('feedback');fb.classList.remove('hidden');if(o.ok){state.gems+=5;state.streak++;state.stats.correct++;state.stats.areaCorrect[current.area]=(state.stats.areaCorrect[current.area]||0)+1;let bonus='';if(state.streak%5===0){state.gems+=20;bonus='<br>🔥 連續答對5題！Bonus +20 Gems'}fb.className='feedback correct';fb.innerHTML=`🎉 Good Job！<br>💎 +5 Gems ${bonus}<br><button class="primary" onclick="nextQ()">下一題 ▶</button>`;beep(780)}else{state.streak=0;current.tries--;current.wrong++;state.mistakes.push({date:new Date().toLocaleString('zh-HK'),area:current.area,level:current.level,question:q.q,wrong:o.text,correct:q.correct});fb.className='feedback wrong';beep(220);if(current.wrong>=3){fb.innerHTML=`💡 已答錯3題，需要重新開始本Level。<br>正確答案：${q.correct}<br><button class="danger" onclick="startQuiz('${current.area}',${current.level})">重新開始</button>`}else if(current.tries>0){fb.innerHTML=`💡 提示：${q.hint}<br>請再試一次。<br><button class="secondary" onclick="showQuestion()">請再試一次</button>`}else{fb.innerHTML=`💡 正確答案：${q.correct}<br><button class="primary" onclick="nextQ()">下一題 ▶</button>`;current.tries=2}}save()}
+function nextQ(){current.idx++;current.tries=2;if(current.idx>=current.questions.length){completeLevel()}else showQuestion()}
+function completeLevel(){document.getElementById('progressBar').style.width='100%';let key=current.area+'-'+current.level;state.done[key]=true;if([1,2,3,4,5].every(l=>state.done[current.area+'-'+l])) state.badges[current.area]=true;save();hideAll();document.getElementById('screenQuiz').classList.remove('hidden');document.getElementById('questionText').innerHTML=`<div class="celebrate">🎆 恭喜完成 Level ${current.level}！</div><p>🏅 收集進度已更新！</p><button class="primary" onclick="goMap()">返回星球地圖</button>`;document.getElementById('options').innerHTML='';document.getElementById('feedback').className='feedback hidden';beep(980)}
+function showDashboard(){hideAll();document.getElementById('screenDashboard').classList.remove('hidden');let mins=Math.max(1,Math.round((Date.now()-state.stats.start)/60000));document.getElementById('studyTime').textContent=mins+'分鐘';document.getElementById('gamesPlayed').textContent=state.stats.games+'次';document.getElementById('doneLevels').textContent=Object.keys(state.done).length+' / 40';document.getElementById('accuracy').textContent=state.stats.answered?Math.round(state.stats.correct/state.stats.answered*100)+'%':'0%';let rows=planets.map(p=>{let a=p[0],t=state.stats.areaTotal[a]||0,c=state.stats.areaCorrect[a]||0,rate=t?Math.round(c/t*100):0;return {a,t,rate}}).filter(x=>x.t);rows.sort((x,y)=>y.rate-x.rate);let strong=rows.slice(0,2).map(x=>`✅ ${x.a}：${x.rate}%`).join('<br>')||'暫未有足夠數據';let weak=rows.slice(-2).reverse().map(x=>`⚠️ ${x.a}：${x.rate}%`).join('<br>')||'暫未有足夠數據';document.getElementById('analysisBox').innerHTML=`<div class="grid"><div class="card"><h3>強項</h3>${strong}</div><div class="card"><h3>建議多練習</h3>${weak}</div></div>`}
+function showMistakes(){hideAll();document.getElementById('screenMistakes').classList.remove('hidden');let box=document.getElementById('mistakeList');if(!state.mistakes.length){box.innerHTML='<p>暫時沒有錯題，繼續保持！</p>';return}box.innerHTML=`<table class="table"><tr><th>日期</th><th>區域</th><th>題目</th><th>錯誤答案</th><th>正確答案</th></tr>${state.mistakes.slice(-30).reverse().map(m=>`<tr><td>${m.date}</td><td>${m.area}</td><td>${m.question}</td><td>${m.wrong}</td><td>${m.correct}</td></tr>`).join('')}</table>`}
+function startMistakePractice(){if(!state.mistakes.length)return alert('暫時沒有錯題');current={area:'錯題簿',level:0,questions:state.mistakes.slice(-10).map(m=>shuffleQuestion({q:m.question,a:[m.correct,m.wrong,'以上皆非','需要更多資料判斷'],correct:m.correct,hint:'回想你上次答錯的地方。',area:m.area,level:m.level})),idx:0,wrong:0,tries:2,mistakeMode:true};showQuestion()}
+function beep(freq){try{let ctx=new (window.AudioContext||window.webkitAudioContext)();let osc=ctx.createOscillator();let gain=ctx.createGain();osc.frequency.value=freq;osc.connect(gain);gain.connect(ctx.destination);gain.gain.setValueAtTime(.08,ctx.currentTime);osc.start();osc.stop(ctx.currentTime+.12)}catch(e){}}
+function resetAll(){if(confirm('確定清除所有進度？')){localStorage.removeItem('p4DeepGame');location.reload()}}
+updateHud(); if(state.char) goMap();
+</script></body></html>
